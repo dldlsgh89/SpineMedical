@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SpineMedical</string>
+    <string name="activity_login">로그인</string>
+</resources>
