@@ -14,7 +14,7 @@
         android:orientation="vertical"/>
     <!-- 헤더 inflation 영역 -->
 
-    <fragment
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/LoginFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

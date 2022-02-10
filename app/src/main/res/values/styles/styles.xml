@@ -14,4 +14,18 @@
         </item>
     </style>
 
+    <style name="BorderStyle2">
+        <item name="android:bottom">2dp</item>
+        <item name="android:left">2dp</item>
+        <item name="android:right">2dp</item>
+        <item name="android:top">2dp</item>
+        <item name="android:shape">rectangle
+            <item name="android:stroke">
+                <item name="android:width">1dp</item>
+                <item name="android:color">#dcdcdc</item>
+            </item>
+            <item name="android:color">#FFF</item>
+        </item>
+    </style>
+
 </resources>
