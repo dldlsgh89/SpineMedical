@@ -20,6 +20,9 @@
 
         <activity android:name=".SpineHomeActivity">
 
+        </activity>
+
+        <activity android:name=".MoreActivity">
 
         </activity>
 

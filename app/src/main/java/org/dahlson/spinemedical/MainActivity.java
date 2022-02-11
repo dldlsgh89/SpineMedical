@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         /*ActionBar actionBar = getSupportActionBar();
         actionBar.hide();*/
 
+
         /**ㅇ
          * 헤더 inflation 호출
          */
