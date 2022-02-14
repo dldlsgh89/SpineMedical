@@ -55,21 +55,18 @@ public class SpineHomeNoneConnect extends Fragment {
                     @Override
                     public void onClick(View view){
 
-                        Intent intent2 = new Intent(getActivity(), MoreActivity.class);
-                        startActivity(intent2);
-
                         //하단 버튼 프래그먼트 변경
-                        //((SpineHomeActivity)getActivity()).ConnectFragment(SpineHomeConnect.newInstance(), "");
+                        ((SpineHomeActivity)getActivity()).ConnectFragment(SpineHomeConnect.newInstance(), "");
                         
                         //다이얼로그 변경 및 버튼 리스너 추가
-                        /*dialog.setContentView(R.layout.custom_dialog2);
+                        dialog.setContentView(R.layout.custom_dialog2);
                         Button okButton2 = dialog.findViewById(R.id.okButton);
                         okButton2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 dialog.dismiss();
                             }
-                        });*/
+                        });
                     }
                 });
 

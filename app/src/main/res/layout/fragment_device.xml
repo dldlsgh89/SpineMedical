@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/label1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="현재 기기번호" />
+
+            <EditText
+                android:id="@+id/now_device"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="현재 연결된 기기가 없습니다."
+                android:inputType="textPersonName"
+                android:textColorHint="#DCDCDC"
+                android:enabled="true"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" 새롭게 연동할 기기를 연결해주시면 자동으로 모델번호가 등록됩니다."
+            android:layout_marginBottom="30dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/label2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="변경할 기기번호"
+                android:textColor="#2ECC71"/>
+
+            <EditText
+                android:id="@+id/new_device"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/border_bottom"
+                android:hint="연동이 필요합니다."
+                android:inputType="textPersonName"
+                android:textColor="#2ECC71"
+                android:textColorHint="#DCDCDC"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:id="@+id/show_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="새롭게 연동"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#2ECC71" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="하시겠습니까?"
+            android:gravity="center"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#E74C3C"
+            android:text=" 확인버튼을 누르지 않으면 연동기기가 변경되지 않습니다!" />
+
+    </LinearLayout>
+
+</ScrollView>

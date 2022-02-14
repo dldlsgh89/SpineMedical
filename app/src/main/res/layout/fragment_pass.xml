@@ -20,14 +20,37 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="아이디" />
+                android:text="현재 비밀번호" />
 
             <EditText
-                android:id="@+id/login_id"
+                android:id="@+id/now_pw"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:hint="아이디를 입력해주십시오"
+                android:hint="현재 비밀번호 입력"
+                android:inputType="textPersonName"
+                android:textColorHint="#DCDCDC"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="새 비밀번호" />
+
+            <EditText
+                android:id="@+id/new_pw"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:hint="새 비밀번호 입력"
                 android:inputType="textPersonName"
                 android:textColorHint="#DCDCDC"
                 android:textSize="25dp" />
@@ -40,17 +63,17 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="비밀번호" />
+                android:text="새 비밀번호 확인" />
 
             <EditText
-                android:id="@+id/login_pw"
+                android:id="@+id/new_pw_check"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:hint="비밀번호를 입력해주십시오"
+                android:hint="새 비밀번호 확인"
                 android:inputType="textPersonName"
                 android:textColorHint="#DCDCDC"
                 android:textSize="25dp" />
@@ -59,30 +82,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_top"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/login_btn"
-                android:layout_width="wrap_content"
+                android:id="@+id/change_btn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="수정"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:background="#00ff0000"
-                android:text="로그인"
-                android:textColor="#4ABECA"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/join_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:background="#00ff0000"
-                android:text="회원가입"
-                android:textColor="#4ABECA"
-                android:textSize="20dp" />
+                android:backgroundTint="#2ECC71" />
         </LinearLayout>
+
     </LinearLayout>
+
 </ScrollView>

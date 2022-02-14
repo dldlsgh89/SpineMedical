@@ -1,5 +1,6 @@
 package org.dahlson.spinemedical;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,9 @@ public class SpineHomeActivity extends AppCompatActivity {
     SpineHomeContent spineHomeContent;
     SpineHomeNoneConnect spineHomeNoneConnect;
 
+    private static Activity activity;
+
+
     private BackKeyHandler backKeyHandler = new BackKeyHandler(this);
 
     @Override
@@ -35,22 +39,20 @@ public class SpineHomeActivity extends AppCompatActivity {
         Log.d("spinemedical","SpineHomeActivity onCreate start");
         //startActivity로 화면을 바꿔줬다고 해서 화면을 구성해주는건 아님. contentview 지정이 필요
         setContentView(R.layout.activity_spine_home);
+
+        activity = SpineHomeActivity.this;
         
         //시작 fragment 지정
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         spineHomeContent = new SpineHomeContent();
         spineHomeNoneConnect = new SpineHomeNoneConnect();
-        
+
         //fragmentTransaction.add는 Activity쪽이 프레그먼트가 아닐경우 가능하다.
         //만약 activity쪽 tag가 framgment 라고 한다면 add가 아닌 replace로 바꿔줄 수 있음.
         //단 tag가 fargment면 tag 내에 미리 tag 내에 들어갈 화면의 name이 들어가 있어야함.
         fragmentTransaction.add(R.id.MainFragment, spineHomeContent);
         fragmentTransaction.add(R.id.ButtonFragment, spineHomeNoneConnect);
         fragmentTransaction.commit();
-
-        //엑티비티에서 액션바 없애고 싶을때
-        /*ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();*/
 
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.home_menu_bar);
         //툴바 사용여부 결정(기본적으로 사용)
@@ -61,8 +63,8 @@ public class SpineHomeActivity extends AppCompatActivity {
         }*/
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.home_menu_bar);
-        ItemSelectedListener itemSelectedListener = new ItemSelectedListener();
-        bottomNavigationView.setOnItemSelectedListener(itemSelectedListener.newInstance(getApplicationContext()));
+        ItemSelectedListener itemSelectedListener = new ItemSelectedListener(activity);
+        bottomNavigationView.setOnItemSelectedListener(itemSelectedListener);
 
         /**ㅇ
          * 헤더 inflation 호출
@@ -70,13 +72,6 @@ public class SpineHomeActivity extends AppCompatActivity {
         this.inflateHeader();
 
     }
-
-/*    @Override
-    public void setContentView(int layoutResID){
-
-
-    }*/
-
 
     /**
      * 헤더 inflation
@@ -154,15 +149,12 @@ public class SpineHomeActivity extends AppCompatActivity {
         }
     }*/
 
-
     static class ItemSelectedListener extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
 
         private Context context;
 
-        // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
-        public ItemSelectedListener newInstance(Context context) {
-            this.context = context;
-            return new ItemSelectedListener();
+        public ItemSelectedListener(Context thisContext) {
+            this.context = thisContext;
         }
 
         @Override
@@ -171,14 +163,16 @@ public class SpineHomeActivity extends AppCompatActivity {
             switch(menuItem.getItemId()) {
                 case R.id.data_tab:
                     intent2 = new Intent(context, SpineHomeActivity.class);
-                    startActivityForResult(intent2, 0);
+                    context.startActivity(intent2);
+                    activity.finish();
                     break;
                 case R.id.message_tab:
 
                     break;
                 case R.id.more_tab:
                     intent2 = new Intent(context, MoreActivity.class);
-                    startActivity(intent2);
+                    context.startActivity(intent2);
+                    activity.finish();
                     break;
             }
             return true;

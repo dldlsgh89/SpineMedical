@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/change_patient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:text="환자정보변경"
+        android:textSize="16dp"
+        android:background="@color/white"
+        android:outlineProvider="none"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/change_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="비밀번호변경"
+        android:textSize="16dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/white"
+        android:outlineProvider="none"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/change_device"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="연동기기변경"
+        android:textSize="16dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/white"
+        android:outlineProvider="none"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그아웃"
+        android:textSize="16dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/white"
+        android:outlineProvider="none"
+        />
+
+</LinearLayout>

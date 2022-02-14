@@ -122,11 +122,4 @@ public class SpineHomeConnect extends Fragment {
 
         return viewGroup;
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
-
 }

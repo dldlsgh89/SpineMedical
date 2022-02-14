@@ -36,7 +36,7 @@ public class JoinFragment extends Fragment {
 
         TextView textView = viewGroup.findViewById(R.id.textView7);
 
-        Spinner spinner = viewGroup.findViewById(R.id.spinner_haspital);
+        Spinner spinner = viewGroup.findViewById(R.id.spinner_hospital);
         Context context = getContext();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

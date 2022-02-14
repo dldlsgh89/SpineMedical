@@ -175,7 +175,7 @@
                     android:enabled="false"/>
 
                 <Spinner
-                    android:id="@+id/spinner_haspital"
+                    android:id="@+id/spinner_hospital"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
