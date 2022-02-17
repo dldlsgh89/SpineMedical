@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
     public void SpineHomeActivity(){
         Intent intent = new Intent(this, SpineHomeActivity.class);
         startActivity(intent);
-
         //MainActivity를 종료(메모리에서 제거)
         finish();
     }

@@ -2,6 +2,7 @@ package org.dahlson.spinemedical;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class PatientFragment extends Fragment {
+import java.util.List;
+
+public class PatientFragment extends Fragment implements MoreActivity.onKeyBackPressedListener {
 
     ViewGroup viewGroup;
     ArrayAdapter<String> adapter;
@@ -24,6 +27,8 @@ public class PatientFragment extends Fragment {
     String[] group_items = {"선택", "활동형", "수면형", "세트"};
     String[] type_items = {"선택", "c", "역c", "s", "역s"};
     String[] stage_items = {"선택", "0", "1", "2", "3", "4", "5"};
+
+    private Fragment patientFragment;
 
     // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
     public static PatientFragment newInstance() {
@@ -36,6 +41,8 @@ public class PatientFragment extends Fragment {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_patient, container, false);
 
         Context context = getContext();
+
+        patientFragment = this;
 
         Spinner spinner_hospital = viewGroup.findViewById(R.id.spinner_hospital);
         adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, hospital_items);
@@ -71,5 +78,23 @@ public class PatientFragment extends Fragment {
         });
 
         return viewGroup;
+    }
+
+    //BackStack 으로 뒤로가기 버튼 누르면 전 화면으로 이동하기 위함
+    @Override
+    public void onBackKey() {
+        Log.d("spinemedical","PatientFragment onBackKey start");
+        /*List<Fragment> fragmentList = getActivity().getSupportFragmentManager().getFragments();
+        Log.d("spinemedical", "onBackKey: " + fragmentList.size());*/
+        getActivity().getSupportFragmentManager().beginTransaction().remove(patientFragment).commit();
+        getActivity().getSupportFragmentManager().popBackStack();
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        Log.d("spinemedical","PatientFragment onAttach start");
+        super.onAttach(context);
+        ((MoreActivity)context).setOnKeyBackPressedListener(this);
     }
 }
