@@ -70,6 +70,7 @@ public class MoreMainFragment extends Fragment implements MoreActivity.onKeyBack
         Log.d("spinemedical","MoreMainFragment onBackKey start");
         MoreActivity activity = (MoreActivity) getActivity();
         activity.setOnKeyBackPressedListener(null);
+        activity.getOnKeyBackPressedListener();
         activity.onBackPressed();
     }
 

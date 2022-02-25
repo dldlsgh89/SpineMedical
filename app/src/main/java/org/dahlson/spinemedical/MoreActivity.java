@@ -72,6 +72,16 @@ public class MoreActivity extends BaseActivity {
         mOnKeyBackPressedListener = listener;
     }
 
+    public onKeyBackPressedListener getOnKeyBackPressedListener() {
+        Log.d("spinemedical","MoreActivity onBackPressed start");
+        if(mOnKeyBackPressedListener != null){
+            Log.d("spinemedical","mOnKeyBackPressedListener != null");
+        }else{
+            Log.d("spinemedical","mOnKeyBackPressedListener == null");
+        }
+        return mOnKeyBackPressedListener;
+    }
+
     //뒤로가기 클릭시 종료
     /*@Override
     public void onBackPressed() {

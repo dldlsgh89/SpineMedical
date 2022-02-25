@@ -29,6 +29,7 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
     String[] stage_items = {"선택", "0", "1", "2", "3", "4", "5"};
 
     private Fragment patientFragment;
+    private MoreMainFragment moreMainFragment;
 
     // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
     public static PatientFragment newInstance() {
@@ -86,9 +87,12 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
         Log.d("spinemedical","PatientFragment onBackKey start");
         /*List<Fragment> fragmentList = getActivity().getSupportFragmentManager().getFragments();
         Log.d("spinemedical", "onBackKey: " + fragmentList.size());*/
-        getActivity().getSupportFragmentManager().beginTransaction().remove(patientFragment).commit();
-        getActivity().getSupportFragmentManager().popBackStack();
+        //getActivity().getSupportFragmentManager().beginTransaction().remove(patientFragment).commit();
+        //getActivity().getSupportFragmentManager().popBackStack();
 
+    
+        //안됨
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, moreMainFragment).addToBackStack(null).commit();
     }
 
     @Override
