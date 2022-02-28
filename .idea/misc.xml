@@ -23,6 +23,7 @@
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/drawable/radius_red.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_base.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_massage.xml" value="0.1044776119402985" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_more.xml" value="0.4608788853161844" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_spine_home.xml" value="0.25" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/custom_dialog.xml" value="0.22" />
@@ -32,7 +33,7 @@
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_device.xml" value="0.33" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_home_buttonbar.xml" value="0.1" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_home_connect.xml" value="0.33" />
-        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_home_content.xml" value="0.29775280898876405" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_home_content.xml" value="0.1" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_home_none_connect.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_join.xml" value="0.1" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_login.xml" value="0.30052083333333335" />
@@ -43,6 +44,7 @@
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/frgment_login.xml" value="0.33" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/frgment_logint.xml" value="0.2046875" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/header.xml" value="0.33" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/message_item.xml" value="0.22" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/more.xml" value="0.259375" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/spine_data_item.xml" value="0.5" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/toolbar.xml" value="0.42864583333333334" />

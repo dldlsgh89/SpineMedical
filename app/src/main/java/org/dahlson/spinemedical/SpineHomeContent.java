@@ -47,11 +47,9 @@ public class SpineHomeContent extends Fragment {
         /*TableLayout tableLayout = viewGroup.findViewById(R.id.spine_data);
         //tableLayout.addView(spineDataAdapter);*/
 
-        //리사이클러뷰를 이용한 리스트를 생성하려 했으나 테이블 형식과는 맞지 않아서 사용 안함
         RecyclerView recyclerView = viewGroup.findViewById(R.id.spine_data);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         SpineDataAdapter spineDataAdapter = new SpineDataAdapter(context, viewGroup);
         spineDataAdapter.addItem(new SpineDataModel(0, 20.3, 0.5, 1, "2022-01-01 13:20:32"));
         spineDataAdapter.addItem(new SpineDataModel(0, 21.5, 0.3, 1, "2022-01-02 14:20:00"));

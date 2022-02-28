@@ -141,7 +141,9 @@ public class BaseActivity extends AppCompatActivity {
                     activity.finish();
                     break;
                 case R.id.message_tab:
-
+                    intent2 = new Intent(context, MassageActivity.class);
+                    context.startActivity(intent2);
+                    activity.finish();
                     break;
                 case R.id.more_tab:
                     intent2 = new Intent(context, MoreActivity.class);

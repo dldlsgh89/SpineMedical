@@ -5,14 +5,14 @@ public class SpineDataModel {
     double temperature;
     double pressure;
     int wear;
-    String date_dt;
+    String insert_dt;
 
-    public SpineDataModel(int idex, double temperature, double pressure, int wear, String date_dt) {
+    public SpineDataModel(int idex, double temperature, double pressure, int wear, String insert_dt) {
         this.idex = idex;
         this.temperature = temperature;
         this.pressure = pressure;
         this.wear = wear;
-        this.date_dt = date_dt;
+        this.insert_dt = insert_dt;
     }
 
     public int getIdex() {
@@ -47,11 +47,11 @@ public class SpineDataModel {
         this.wear = wear;
     }
 
-    public String getDate_dt() {
-        return date_dt;
+    public String getInsert_dt() {
+        return insert_dt;
     }
 
-    public void setDate_dt(String data_dt) {
-        this.date_dt = date_dt;
+    public void setInsert_dt(String data_dt) {
+        this.insert_dt = insert_dt;
     }
 }

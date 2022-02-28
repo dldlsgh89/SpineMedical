@@ -100,7 +100,7 @@ public class SpineDataAdapter extends RecyclerView.Adapter<SpineDataAdapter.View
             textView2.setText(String.valueOf(item.getTemperature()));
             textView3.setText(String.valueOf(item.getPressure()));
             textView4.setText(String.valueOf(item.getWear()));
-            String[] date_array = item.getDate_dt().split(" ");
+            String[] date_array = item.getInsert_dt().split(" ");
             textView5.setText(date_array[0]);
             textView6.setText(date_array[1]);
         }

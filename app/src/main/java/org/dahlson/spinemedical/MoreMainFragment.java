@@ -14,10 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class MoreMainFragment extends Fragment implements MoreActivity.onKeyBackPressedListener{
+public class MoreMainFragment extends Fragment{
     ViewGroup viewGroup;
-    Context context;
-    private OnBackPressedCallback callback;
 
     // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
     public static MoreMainFragment newInstance() {
@@ -34,6 +32,7 @@ public class MoreMainFragment extends Fragment implements MoreActivity.onKeyBack
         Button change_device = viewGroup.findViewById(R.id.change_device);
         Button logout = viewGroup.findViewById(R.id.logout);
 
+        //환자정보변경버튼
         change_patient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,75 +40,27 @@ public class MoreMainFragment extends Fragment implements MoreActivity.onKeyBack
             }
         });
 
+        //비밀번호변경버튼
         change_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MoreActivity)getActivity()).passFragment(PassFragment.newInstance(), "");
             }
         });
-
+        //연동기기변경버튼
         change_device.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MoreActivity)getActivity()).deviceFragment(DeviceFragment.newInstance(), "");
             }
         });
-
+        //로그아웃버튼
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ((MoreActivity)getActivity()).MainActivity();
             }
         });
-
         return viewGroup;
     }
-
-
-    //BackStack 으로 뒤로가기 버튼 누르면 전 화면으로 이동하기 위함
-    @Override
-    public void onBackKey() {
-        Log.d("spinemedical","MoreMainFragment onBackKey start");
-        /*MoreActivity activity = (MoreActivity) getActivity();
-        activity.setOnKeyBackPressedListener(null);
-        activity.onBackPressed();*/
-
-        ((MoreActivity)getActivity()).onBackHandler();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        Log.d("spinemedical","MoreMainFragment onAttach start");
-        super.onAttach(context);
-
-       /* callback = new OnBackPressedCallback(true){
-            @Override
-            public void handleOnBackPressed(){
-                onBackKey();
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);*/
-
-        ((MoreActivity)context).setOnKeyBackPressedListener(this);
-    }
-
-    /*@Override
-    public void onPause() {
-        Log.d("spinemedical","MoreMainFragment onPause start");
-        super.onPause();
-        //this.onStop();
-        //((MoreActivity)context).setOnKeyBackPressedListener(null);
-    }
-
-    @Override
-    public void onStop() {
-        Log.d("spinemedical","MoreMainFragment onStop start");
-        super.onStop();
-    }
-
-    @Override
-    public void onDetach(){
-        super.onDetach();
-        callback.remove();
-    }*/
 }

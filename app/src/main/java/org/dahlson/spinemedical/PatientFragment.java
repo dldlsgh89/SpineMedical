@@ -1,5 +1,6 @@
 package org.dahlson.spinemedical;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,13 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class PatientFragment extends Fragment implements MoreActivity.onKeyBackPressedListener {
@@ -30,8 +35,6 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
     String[] type_items = {"선택", "c", "역c", "s", "역s"};
     String[] stage_items = {"선택", "0", "1", "2", "3", "4", "5"};
 
-    private Fragment patientFragment;
-    private MoreMainFragment moreMainFragment;
 
     // 각각의 Fragment마다 Instance를 반환해 줄 메소드를 생성합니다.
     public static PatientFragment newInstance() {
@@ -45,8 +48,32 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
 
         Context context = getContext();
 
-        patientFragment = this;
+        //DatePicker setting
+        DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+            //달력 선택시 textview에 셋팅
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                TextView birth_text = viewGroup.findViewById(R.id.birth_text);
+                String select_birth = String.valueOf(year) + "-" + String.valueOf(month+1) + "-" + String.valueOf(dayOfMonth);
+                birth_text.setText(select_birth);
+            }
+        };
+        // DatePickerDialog
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        Log.d("spinemedical","month : " + month);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog dialog = new DatePickerDialog(context, listener, year, month, day);
+        Button button = viewGroup.findViewById(R.id.birth);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.show();
+            }
+        });
 
+        //spinner setting
         Spinner spinner_hospital = viewGroup.findViewById(R.id.spinner_hospital);
         adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, hospital_items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,51 +114,16 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
     @Override
     public void onBackKey() {
         Log.d("spinemedical","PatientFragment onBackKey start");
-        //List<Fragment> fragmentList = getActivity().getSupportFragmentManager().getFragments();
-        //Log.d("spinemedical", "onBackKey: " + fragmentList.size());
         MoreActivity activity = (MoreActivity) getActivity();
         activity.setOnKeyBackPressedListener(null);
-        //activity.onBackPressed();
-        //moreFragment 화면에서 PatientFreagMent 불러와지길래 프래그먼트 문제인가 싶어서 백키 눌렀을때 현재 프래그먼트 삭제하도록 해봤는데 안됨.
-        getActivity().getSupportFragmentManager().beginTransaction().remove(patientFragment).commit();
+        //getActivity().getSupportFragmentManager().beginTransaction().remove(patientFragment).commit();
         getActivity().getSupportFragmentManager().popBackStack();
-        //안됨
-        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, moreMainFragment).addToBackStack(null).commit();
     }
 
     @Override
     public void onAttach(Context context) {
         Log.d("spinemedical","PatientFragment onAttach start");
         super.onAttach(context);
-
-        //OnBackPressedCallback 방법 안됨.
-        /*callback = new OnBackPressedCallback(true){
-            @Override
-            public void handleOnBackPressed(){
-                onBackKey();
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);*/
-
         ((MoreActivity)context).setOnKeyBackPressedListener(this);
     }
-
-    /*@Override
-    public void onPause() {
-        Log.d("spinemedical","PatientFragment onPause start");
-        super.onPause();
-        //((MoreActivity)context).setOnKeyBackPressedListener(null);
-    }
-
-    @Override
-    public void onStop() {
-        Log.d("spinemedical","PatientFragment onStop start");
-        super.onStop();
-    }
-
-    @Override
-    public void onDetach(){
-        super.onDetach();
-        callback.remove();
-    }*/
 }

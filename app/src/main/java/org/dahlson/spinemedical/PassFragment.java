@@ -1,6 +1,8 @@
 package org.dahlson.spinemedical;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class PassFragment extends Fragment {
+public class PassFragment extends Fragment implements MoreActivity.onKeyBackPressedListener{
 
     ViewGroup viewGroup;
 
@@ -33,5 +35,21 @@ public class PassFragment extends Fragment {
         });
 
         return viewGroup;
+    }
+
+    //BackStack 으로 뒤로가기 버튼 누르면 전 화면으로 이동하기 위함
+    @Override
+    public void onBackKey() {
+        Log.d("spinemedical","PassFragment onBackKey start");
+        MoreActivity activity = (MoreActivity) getActivity();
+        activity.setOnKeyBackPressedListener(null);
+        getActivity().getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        Log.d("spinemedical","PassFragment onAttach start");
+        super.onAttach(context);
+        ((MoreActivity)context).setOnKeyBackPressedListener(this);
     }
 }

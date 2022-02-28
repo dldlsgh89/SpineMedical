@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+<!--
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"/>
-    <!-- 헤더 inflation 영역 -->
+    &lt;!&ndash; 헤더 inflation 영역 &ndash;&gt;
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_fragment"
@@ -30,7 +30,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--하단 메뉴바-->
+    &lt;!&ndash;하단 메뉴바&ndash;&gt;
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/home_menu_bar"
         android:layout_width="match_parent"
@@ -38,6 +38,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/home_menu"/>
+        app:menu="@menu/home_menu"/>-->
 
 </LinearLayout>
