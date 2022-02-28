@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -40,16 +41,17 @@ public class MoreActivity extends BaseActivity {
 
     //프레그먼트 내부에서 다른 프레그먼트로 전환
     public void patientFragment(PatientFragment fragment, String text) {
-        Log.d("spinemedical", "noneConnectFragment start");
-        /*FragmentManager fragmentManager = getSupportFragmentManager();
+        Log.d("spinemedical", "patientFragment start");
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_fragment, fragment).addToBackStack(null).commit();*/
-        MoreActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
+        fragmentTransaction.replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
+        //MoreActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
+        //MoreActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).commit();
     }
 
     //프레그먼트 내부에서 다른 프레그먼트로 전환
     public void passFragment(PassFragment fragment, String text) {
-        Log.d("spinemedical", "ConnectFragment start");
+        Log.d("spinemedical", "passFragment start");
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
@@ -57,13 +59,21 @@ public class MoreActivity extends BaseActivity {
 
     //프레그먼트 내부에서 다른 프레그먼트로 전환
     public void deviceFragment(DeviceFragment fragment, String text) {
-        Log.d("spinemedical", "ConnectFragment start");
+        Log.d("spinemedical", "deviceFragment start");
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
     }
 
-    //뒤로가기 버튼을 뺏어올 리스너 등록
+    //뒤로가기 클릭시 종료 기본 종료
+    /*@Override
+    public void onBackPressed() {
+        backKeyHandler.onBackPressed();
+    }*/
+    //메인에서 토스트를 띄우며 종료확인을 하기 위해 필드선언
+    //EndToast endToast = new EndToast(this);
+    
+    //뒤로가기 버튼 커스텀
     public interface onKeyBackPressedListener {
         void onBackKey();
     }
@@ -72,41 +82,59 @@ public class MoreActivity extends BaseActivity {
         mOnKeyBackPressedListener = listener;
     }
 
-    public onKeyBackPressedListener getOnKeyBackPressedListener() {
-        Log.d("spinemedical","MoreActivity onBackPressed start");
-        if(mOnKeyBackPressedListener != null){
-            Log.d("spinemedical","mOnKeyBackPressedListener != null");
-        }else{
-            Log.d("spinemedical","mOnKeyBackPressedListener == null");
-        }
+    /*public onKeyBackPressedListener getOnKeyBackPressedListener() {
+        Log.d("spinemedical","MoreActivity getOnKeyBackPressedListener start");
         return mOnKeyBackPressedListener;
-    }
-
-    //뒤로가기 클릭시 종료
-    /*@Override
-    public void onBackPressed() {
-        backKeyHandler.onBackPressed();
     }*/
 
-    //메인에서 토스트를 띄우며 종료확인을 하기 위해 필드선언
-    //EndToast endToast = new EndToast(this);
     @Override
     public void onBackPressed() {
         Log.d("spinemedical","MoreActivity onBackPressed start");
+
+        //현재 visible fragment 화면에 따라 backkey 핸들러 다르게 호출하려했지만 안됨.
+        /*Fragment fragment = null;
+        for (Fragment visiblefragment: getSupportFragmentManager().getFragments()) {
+            if (visiblefragment.isVisible()) {
+                fragment = visiblefragment;
+            }
+        }
+        Log.d("spinemedical","fragmentClassName " + fragment.getClass().toString());
+        if(fragment instanceof MoreMainFragment) {
+            backKeyHandler.onBackPressed();
+        }else{
+            mOnKeyBackPressedListener.onBackKey();
+        }*/
+
         if (mOnKeyBackPressedListener != null) {
             Log.d("spinemedical","MoreActivity onBackPressed if");
             mOnKeyBackPressedListener.onBackKey();
         } else {
             Log.d("spinemedical","MoreActivity onBackPressed else");
             backKeyHandler.onBackPressed();
-            /*//쌓인 BackStack 여부에 따라 Toast를 띄울지, 뒤로갈지
-            if(getSupportFragmentManager().getBackStackEntryCount()==0){
-                //* 종료 EndToast Bean 사용
-                //endToast.showEndToast("종료하려면 한번 더 누르세요.");
-
-            }else{
-                super.onBackPressed();
-            }*/
+            //super.onBackPressed();
         }
+
+        /*//쌓인 BackStack 여부에 따라 Toast를 띄울지, 뒤로갈지
+        if(getSupportFragmentManager().getBackStackEntryCount()==0){
+            //* 종료 EndToast Bean 사용
+            //endToast.showEndToast("종료하려면 한번 더 누르세요.");
+
+        }else{
+            super.onBackPressed();
+        }*/
     }
+
+    public void onBackHandler(){
+        backKeyHandler.onBackPressed();
+    }
+
+    //현재 보여지고 있는 가장 최상위 Fragment 가져오기
+    /*public Fragment getVisibleFragment() {
+        for (Fragment fragment: getSupportFragmentManager().getFragments()) {
+            if (fragment.isVisible()) {
+                return fragment;
+            }
+        }
+        return null;
+    }*/
 }

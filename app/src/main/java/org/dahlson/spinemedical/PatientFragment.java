@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
 
     ViewGroup viewGroup;
     ArrayAdapter<String> adapter;
+    private OnBackPressedCallback callback;
 
     String[] items = {"선택", "직접입력"};
     String[] hospital_items = {"선택", "직접입력"};
@@ -85,20 +87,51 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
     @Override
     public void onBackKey() {
         Log.d("spinemedical","PatientFragment onBackKey start");
-        /*List<Fragment> fragmentList = getActivity().getSupportFragmentManager().getFragments();
-        Log.d("spinemedical", "onBackKey: " + fragmentList.size());*/
-        //getActivity().getSupportFragmentManager().beginTransaction().remove(patientFragment).commit();
-        //getActivity().getSupportFragmentManager().popBackStack();
-
-    
+        //List<Fragment> fragmentList = getActivity().getSupportFragmentManager().getFragments();
+        //Log.d("spinemedical", "onBackKey: " + fragmentList.size());
+        MoreActivity activity = (MoreActivity) getActivity();
+        activity.setOnKeyBackPressedListener(null);
+        //activity.onBackPressed();
+        //moreFragment 화면에서 PatientFreagMent 불러와지길래 프래그먼트 문제인가 싶어서 백키 눌렀을때 현재 프래그먼트 삭제하도록 해봤는데 안됨.
+        getActivity().getSupportFragmentManager().beginTransaction().remove(patientFragment).commit();
+        getActivity().getSupportFragmentManager().popBackStack();
         //안됨
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, moreMainFragment).addToBackStack(null).commit();
+        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, moreMainFragment).addToBackStack(null).commit();
     }
 
     @Override
     public void onAttach(Context context) {
         Log.d("spinemedical","PatientFragment onAttach start");
         super.onAttach(context);
+
+        //OnBackPressedCallback 방법 안됨.
+        /*callback = new OnBackPressedCallback(true){
+            @Override
+            public void handleOnBackPressed(){
+                onBackKey();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);*/
+
         ((MoreActivity)context).setOnKeyBackPressedListener(this);
     }
+
+    /*@Override
+    public void onPause() {
+        Log.d("spinemedical","PatientFragment onPause start");
+        super.onPause();
+        //((MoreActivity)context).setOnKeyBackPressedListener(null);
+    }
+
+    @Override
+    public void onStop() {
+        Log.d("spinemedical","PatientFragment onStop start");
+        super.onStop();
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        callback.remove();
+    }*/
 }
