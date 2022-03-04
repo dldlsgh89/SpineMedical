@@ -3,6 +3,9 @@ package org.dahlson.spinemedical;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,20 +30,34 @@ public class MassageActivity extends BaseActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         MessageAdapter messageAdapter = new MessageAdapter();
-        messageAdapter.addItem(new MessageModel(0, getURLForDrawable("doctor.png"), "김현아", "안녕하십니까, 환자 여러분", "2022-01-01"));
-        messageAdapter.addItem(new MessageModel(0, getURLForDrawable("doctor.png"), "김현아", "안녕하십니까, 환자 여러분", "2022-01-01"));
-        messageAdapter.addItem(new MessageModel(0, getURLForDrawable("doctor.png"), "김현아", "안녕하십니까, 환자 여러분", "2022-01-01"));
-        messageAdapter.addItem(new MessageModel(0, getURLForDrawable("doctor.png"), "김현아", "안녕하십니까, 환자 여러분", "2022-01-01"));
+        messageAdapter.addItem(new MessageModel(0, "https://cdn.pixabay.com/photo/2021/05/10/10/46/yellow-wall-6243164_960_720.jpg", "김현아", "안녕하십니까, 환자 여러분", "2022-01-01"));
+        messageAdapter.addItem(new MessageModel(0, getURLForResource(R.drawable.doctor), "김현아", "안녕하십니까, 환자 여러분", "2022-\n01-01"));
+        messageAdapter.addItem(new MessageModel(0, getURLForResource(R.drawable.doctor), "김현아", "안녕하십니까, 환자 여러분", "2022-\n01-01"));
+        messageAdapter.addItem(new MessageModel(0, getURLForResource(R.drawable.doctor), "김현아", "안녕하십니까, 환자 여러분", "2022-\n01-01"));
 
         recyclerView.setAdapter(messageAdapter);
+
+
+        messageAdapter.setOnItemClickListener(new OnMessageItemClickListener() {
+            @Override
+            public void onItemClick(MessageAdapter.ViewHolder holder, View view, int position) {
+                Log.d("spinemedical", "onItemClick start");
+                MessageModel item = messageAdapter.getItem(position);
+                Toast.makeText(getApplicationContext(), "아이템 선택됨: " + item.getContent(), Toast.LENGTH_LONG).show();
+            }
+        });
+
         inflateHeader("메시지 목록");
     }
 
-    private String getURLForResource(String fileName) {
-        return Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + fileName).toString();
+    private String getURLForResource(int resId) {
+        //return Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + resId).toString();
+        return "android.resource://" + R.class.getPackage().getName() + "/" + resId;
     }
 
     private String getURLForDrawable(String fileName) {
         return "@drawable/" + fileName;
     }
+
+
 }
