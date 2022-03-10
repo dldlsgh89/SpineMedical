@@ -14,6 +14,7 @@
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/drawable/border_all_radius_red.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/drawable/border_bottom.xml" value="0.309375" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/drawable/border_none.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/drawable/border_none_green.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/drawable/border_none_left.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/drawable/border_none_rigit.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/drawable/border_top.xml" value="0.36666666666666664" />
@@ -24,6 +25,8 @@
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_base.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_massage.xml" value="0.1044776119402985" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_message.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_message_view.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_more.xml" value="0.4608788853161844" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_spine_home.xml" value="0.25" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/custom_dialog.xml" value="0.22" />
@@ -45,7 +48,11 @@
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/frgment_logint.xml" value="0.2046875" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/header.xml" value="0.33" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/message_item.xml" value="0.5" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/message_view.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/message_view_item.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/more.xml" value="0.259375" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/send_message1_item.xml" value="0.5" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/send_message2_item.xml" value="0.2921875" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/spine_data_item.xml" value="0.5" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/toolbar.xml" value="0.42864583333333334" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/menu/home_menu.xml" value="0.22" />

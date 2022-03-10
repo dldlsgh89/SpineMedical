@@ -17,12 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.dahlson.spinemedical.model.SpineDataModel;
+import org.dahlson.spinemedical.util.RecyclerDecoration;
 
 public class SpineHomeContent extends Fragment {
 
     ViewGroup viewGroup;
     Context context;
     String[] items = {"전체", "착용", "미착용"};
+
 
     @Nullable
     @Override
@@ -38,7 +40,6 @@ public class SpineHomeContent extends Fragment {
 
         return viewGroup;
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class SpineHomeContent extends Fragment {
         recyclerView.setAdapter(spineDataAdapter);
 
         // 아이템간 공백 추가
-        RecyclerDecoration spaceDecoration = new RecyclerDecoration(-10);
+        RecyclerDecoration spaceDecoration = new RecyclerDecoration("h",-10,0);
         recyclerView.addItemDecoration(spaceDecoration);
 
     }

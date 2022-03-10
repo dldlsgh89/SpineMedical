@@ -3,23 +3,18 @@ package org.dahlson.spinemedical;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.dahlson.spinemedical.model.MessageModel;
-import org.dahlson.spinemedical.model.SpineDataModel;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,40 +23,61 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> implements OnMessageItemClickListener{
+public class MessageReceiveAdapter extends RecyclerView.Adapter<MessageReceiveAdapter.ViewHolder> {
 
     private Context context;
     private ViewGroup viewGroup;
-
-    OnMessageItemClickListener listener;
-
+    Boolean trueFalse = true;
     ArrayList<MessageModel> items = new ArrayList<MessageModel>();
+
+
+    @Override
+    public int getItemViewType(int position){
+        return items.get(position).getView_type();
+    }
 
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MessageReceiveAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.message_item, parent, false);
-        return new ViewHolder(itemView, this);
+        MessageReceiveAdapter.ViewHolder newViewHolder;
+        View itemView;
+        if(trueFalse){
+            itemView = inflater.inflate(R.layout.receive_message1_item, parent, false);
+        }else{
+            itemView = inflater.inflate(R.layout.receive_message2_item, parent, false);
+        }
+
+        newViewHolder = new MessageReceiveAdapter.ViewHolder(itemView,trueFalse);
+
+        return newViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MessageReceiveAdapter.ViewHolder holder, int position) {
+
+        /*int layoutParamsWidth = holder.testLinear.getLayoutParams().width;
+        Log.d("spinemedical", "MessageViewAdapter - layoutParams.width : " + layoutParamsWidth);*/
+        /*Log.d("spinemedical", "MessageViewAdapter - newViewHolder.testLinear.getDisplay():" + newViewHolder.testLinear.getDisplay());
+        Log.d("spinemedical", "MessageViewAdapter - newViewHolder.testLinear.getLayoutParams().width:" + newViewHolder.testLinear.getLayoutParams().width);*/
+       /* layoutParams.height = layoutParams.width;
+        holder.itemView.requestLayout();*/
+
         MessageModel item = items.get(position);
-        holder.setItem(item);
+        holder.setItem(item, trueFalse);
         Log.d("spinemedical", "position :" + position);
         Log.d("spinemedical", "items.size() :" + items.size());
         /*if(position == items.size()){
             holder.itemView.
         }*/
+        trueFalse = false;
     }
 
     @Override
     public int getItemCount() {
         return items.size();
     }
-
 
     public void addItem(MessageModel item){
         items.add(item);
@@ -79,67 +95,43 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         items.set(position, messageModel);
     }
 
-    //각 아이템을 선택했을때 이벤트를 처리하기 위한 메서드
-    public void setOnItemClickListener(OnMessageItemClickListener listener){
-        this.listener = listener;
-    }
-
-    @Override
-    public void onItemClick(ViewHolder holder, View view, int position) {
-        if(listener != null){
-            listener.onItemClick(holder, view, position);
-        }
-    }
-
-
     static class ViewHolder extends RecyclerView.ViewHolder{
+        //LinearLayout testLinear;
         ImageView imageView;
         TextView fromName;
         TextView content;
         TextView insert_dt;
 
-        public ViewHolder(View itemView, final OnMessageItemClickListener listener){
+        public ViewHolder(@NonNull View itemView, boolean check) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.message_img);
-            fromName = itemView.findViewById(R.id.message_title);
-            content = itemView.findViewById(R.id.message_content);
-            insert_dt = itemView.findViewById(R.id.message_date);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-
-                    if(listener != null){
-                        listener.onItemClick(ViewHolder.this, view, position);
-                    }
-                }
-            });
+            //testLinear = itemView.findViewById(R.id.testLinear);
+            if(check){
+                imageView = itemView.findViewById(R.id.message_img);
+                fromName = itemView.findViewById(R.id.message_name);
+                content = itemView.findViewById(R.id.message_content);
+                insert_dt = itemView.findViewById(R.id.message_date);
+            }else{
+                content = itemView.findViewById(R.id.message_content);
+                insert_dt = itemView.findViewById(R.id.message_date);
+            }
         }
 
-        public void setItem(MessageModel item){
-            Log.d("spinemedical", "item.getFromName() : " + item.getFromName());
-            fromName.setText(item.getFromName().toString());
-            content.setText(String.valueOf(item.getContent()));
-            insert_dt.setText(String.valueOf(item.getInsert_dt()));
-            Log.d("spinemedical", "item.getImg_url() :" + item.getImg_url());
-            //imageView.setImageURI(Uri.parse(item.getImg_url()));
-            new DownloadFilesTask(imageView, item.getImg_url()).execute();
-            //imageView.setImageResource(item.getImg_url());
+        public void setItem(MessageModel item , boolean check){
+            if(check){
+                Log.d("spinemedical", "item.getFromName() : " + item.getFromName());
+                fromName.setText(item.getFromName().toString());
+                content.setText(String.valueOf(item.getContent()));
+                insert_dt.setText(String.valueOf(item.getInsert_dt()));
+                Log.d("spinemedical", "item.getImg_url() :" + item.getImg_url());
+                //imageView.setImageURI(Uri.parse(item.getImg_url()));
+                new MessageReceiveAdapter.DownloadFilesTask(imageView, item.getImg_url()).execute();
+                //imageView.setImageResource(item.getImg_url());
+            }else{
+                content.setText(String.valueOf(item.getContent()));
+                insert_dt.setText(String.valueOf(item.getInsert_dt()));
+            }
         }
-
     }
-
-   /* public class ItemView extends LinearLayout {
-        public ItemView(Context context, @LayoutRes int resource){
-            super(context);
-
-            LayoutInflater inflater = LayoutInflater.from(context);
-
-            View view = inflater.inflate(resource, this, true);
-        }
-    }*/
-
 
     private static class DownloadFilesTask extends AsyncTask<String,Void, Bitmap> {
         ImageView imageView;
@@ -196,11 +188,4 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             imageView.setImageBitmap(result);
         }
     }
-    /*주의사항
-    1.  인터넷 관련 작업을 할 때는 인터넷 권한을 허용해줘야합니다.
-    <uses-permission android:name="android.permission.INTERNET" />
-    2. 네트워크 작업을 할때는 Thread나 AsyncTask로 처리해야합니다.
-    3. Url 이미지를 로드하는 Thread가 작업 할 때(doInBackground()doInBackground(String... strings))
-    UI관련 기능을 가지고 있는 메인 Thread는 대기를 하고,
-    완료가 되었을 때(onPostExecuteonPostExecute(Bitmap result))에서 처리해줘야합니다.*/
 }

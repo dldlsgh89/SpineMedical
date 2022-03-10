@@ -33,7 +33,11 @@
 
         </activity>
 
-        <activity android:name=".MassageActivity">
+        <activity android:name=".MessageActivity">
+
+        </activity>
+
+        <activity android:name=".MessageViewActivity">
 
         </activity>
 

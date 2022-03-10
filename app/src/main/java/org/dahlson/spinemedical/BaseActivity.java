@@ -4,16 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +21,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class BaseActivity extends AppCompatActivity {
 
     protected static Activity activity;
+    protected LinearLayout headerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +66,11 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
+    //해더 타이틀 변경
     protected void inflateHeader(String text)
     {
         // inflation 대상을 포함시키는 레이아웃
-        LinearLayout headerLayout = (LinearLayout)findViewById(R.id.header);
+        headerLayout = (LinearLayout)findViewById(R.id.header);
         // inflater 객체 생성.
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         // 레이아웃을 inflate한다.
@@ -80,6 +78,15 @@ public class BaseActivity extends AppCompatActivity {
         // inflate 이후 텍스트 바꿔줌
         TextView textView = (TextView)headerLayout.findViewById(R.id.title_text);
         textView.setText(text);
+    }
+
+    //해더 백그라운드 컬러 변경
+    protected void inflateHeaderSetColor(String text)
+    {
+        // inflate 이후 색 바꿔줌
+        LinearLayout headerLayout2 = (LinearLayout)headerLayout.findViewById(R.id.message);
+        Log.d("spinemedical", "BaseActivity - Color.parseColor(text) : " + Color.parseColor(text));
+        headerLayout2.setBackgroundColor(Color.parseColor(text));
     }
 
     //툴바를 사용할지 말지 정함
@@ -141,7 +148,7 @@ public class BaseActivity extends AppCompatActivity {
                     activity.finish();
                     break;
                 case R.id.message_tab:
-                    intent2 = new Intent(context, MassageActivity.class);
+                    intent2 = new Intent(context, MessageActivity.class);
                     context.startActivity(intent2);
                     activity.finish();
                     break;
