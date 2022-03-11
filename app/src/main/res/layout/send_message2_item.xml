@@ -68,6 +68,7 @@
                     android:layout_height="15dp"
                     android:gravity="right|center"
                     android:text="이름"
+                    android:visibility="gone"
                     android:textSize="10sp" />
 
                 <androidx.cardview.widget.CardView
@@ -76,12 +77,12 @@
                     android:background="#FFFFFF"
                     app:cardCornerRadius="10dp">
 
-                    <org.dahlson.spinemedical.util.CharacterWrapTextView
+                    <TextView
                         android:id="@+id/message_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:text="안녕하십니까, 환자 여러분. 전북대 정형외과 외래교수 김현아입니다."
+                        android:text="전화번호asdasdgasgasgasdgaegasdgeasdgasdgegasdgas"
                         android:textSize="15sp" />
 
                 </androidx.cardview.widget.CardView>
@@ -93,6 +94,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="3dp"
+                android:visibility="invisible"
                 />
 
         </LinearLayout>

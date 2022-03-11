@@ -15,10 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class JoinFragment extends Fragment {
+public class JoinFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
 
     String arguments;
-
     String[] items = {"선택", "직접입력"};
 
 
@@ -34,14 +33,12 @@ public class JoinFragment extends Fragment {
         Log.d("spinemedical", "arguments : " + arguments);
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_join, container, false);
 
-        TextView textView = viewGroup.findViewById(R.id.textView7);
-
         Spinner spinner = viewGroup.findViewById(R.id.spinner_hospital);
         Context context = getContext();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);  //스피너에 어댑터 설정하기
-
+        TextView textView = viewGroup.findViewById(R.id.textView7);
 
         /*EditText textView2 = viewGroup.findViewById(R.id.editTextTextPersonName);
         textView2.setText(arguments);*/
@@ -63,6 +60,27 @@ public class JoinFragment extends Fragment {
             }
         });
 
+        Spinner spinner2 = viewGroup.findViewById(R.id.spinner_doctor);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(adapter2);  //스피너에 어댑터 설정하기
+        TextView textView2 = viewGroup.findViewById(R.id.textView9);
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //스피너 리스너 설정
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textView2.setText(items[position]);
+                if(items[position].equals("직접입력")){
+                    textView2.setEnabled(true);
+                }else{
+                    textView2.setEnabled(false);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                textView2.setText("");
+            }
+        });
+
         return viewGroup;
     }
 
@@ -70,5 +88,17 @@ public class JoinFragment extends Fragment {
         this.arguments = arguments;
     }
 
+    //BackStack 으로 뒤로가기 버튼 누르면 전 화면으로 이동하기 위함
+    @Override
+    public void onBackKey() {
+        MainActivity activity = (MainActivity) getActivity();
+        activity.setOnKeyBackPressedListener(null);
+        getActivity().getSupportFragmentManager().popBackStack();
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnKeyBackPressedListener(this);
+    }
 }

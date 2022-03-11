@@ -28,12 +28,17 @@ public class MessageSendAdapter extends RecyclerView.Adapter<MessageSendAdapter.
     Boolean trueFalse = true;
     ArrayList<MessageModel> items = new ArrayList<MessageModel>();
 
+    @Override
+    public int getItemViewType(int position){
+        return items.get(position).getView_type();
+    }
 
     @NonNull
     @Override
     public MessageSendAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         MessageSendAdapter.ViewHolder newViewHolder;
+        Log.d("spinemedical", "onCreateViewHolder - viewType :" + viewType);
         View itemView;
         //if(trueFalse){
             itemView = inflater.inflate(R.layout.send_message1_item, parent, false);

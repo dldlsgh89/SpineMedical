@@ -123,13 +123,13 @@
                     android:background="#FFFFFF"
                     app:cardCornerRadius="10dp">
 
-                    <TextView
+                    <org.dahlson.spinemedical.util.CharacterWrapTextView
                         android:id="@+id/message_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="left|center"
                         android:padding="5dp"
-                        android:text="전화번호asdasdgasgasgasdgaegasdgeasdgasdgegasdgas"
+                        android:text="안녕하십니까, 환자 여러분. 전북대 정형외과 외래교수 김현아입니다."
+
                         android:textSize="15sp" />
 
                 </androidx.cardview.widget.CardView>

@@ -37,16 +37,18 @@ public class MessageViewActivity extends BaseActivity{
 
         MessageReceiveAdapter messageReceiveAdapter = new MessageReceiveAdapter();
         messageReceiveAdapter.addItem(new MessageModel(0, "https://cdn.pixabay.com/photo/2021/05/10/10/46/yellow-wall-6243164_960_720.jpg", "김현아", "안녕하십니까, 환자 여러분. 전북대 정형외과 외래교수 김현아입니다. ", "2022-01-01",1));
-        messageReceiveAdapter.addItem(new MessageModel(0, "https://cdn.pixabay.com/photo/2021/05/10/10/46/yellow-wall-6243164_960_720.jpg", "이인호", "넹 안녕하세요", "2022-01-01",1));
+        messageReceiveAdapter.addItem(new MessageModel(0, "https://cdn.pixabay.com/photo/2021/05/10/10/46/yellow-wall-6243164_960_720.jpg", "이인호", "넹 안녕하세요", "2022-01-01",2));
+        messageReceiveAdapter.addItem(new MessageModel(0, "https://cdn.pixabay.com/photo/2021/05/10/10/46/yellow-wall-6243164_960_720.jpg", "김현아", "안녕하십니까, 환자 여러분. 전북대 정형외과 외래교수 김현아입니다. ", "2022-01-01",3));
+        messageReceiveAdapter.addItem(new MessageModel(0, "https://cdn.pixabay.com/photo/2021/05/10/10/46/yellow-wall-6243164_960_720.jpg", "이인호", "넹 안녕하세요.", "2022-01-01",4));
         recyclerView.setAdapter(messageReceiveAdapter);
 
 
        //recyclerView.add
 
-        MessageSendAdapter messageSendAdapter = new MessageSendAdapter();
+     /*   MessageSendAdapter messageSendAdapter = new MessageSendAdapter();
         messageSendAdapter.addItem(new MessageModel(0, "https://cdn.pixabay.com/photo/2021/05/10/10/46/yellow-wall-6243164_960_720.jpg", "김현아", "안녕하십니까, 환자 여러분. 전북대 정형외과 외래교수 김현아입니다. ", "2022-01-01",1));
         messageSendAdapter.addItem(new MessageModel(0, "https://cdn.pixabay.com/photo/2021/05/10/10/46/yellow-wall-6243164_960_720.jpg", "이인호", "넹 안녕하세요", "2022-01-01",1));
-        recyclerView.setAdapter(messageSendAdapter);
+        recyclerView.setAdapter(messageSendAdapter);*/
 
     }
 

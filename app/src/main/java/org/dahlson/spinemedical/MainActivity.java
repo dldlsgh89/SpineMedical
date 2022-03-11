@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         joinFragment.setArguments(text);
-        fragmentTransaction.replace(R.id.LoginFragment, joinFragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
+        fragmentTransaction.replace(R.id.LoginFragment, joinFragment).addToBackStack(null).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
 
     //프레그먼트 내부에서 다른 프레그먼트로 전환
@@ -81,8 +81,26 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+
+    //뒤로가기 버튼 커스텀
+    public interface onKeyBackPressedListener {
+        void onBackKey();
+    }
+    private MainActivity.onKeyBackPressedListener mOnKeyBackPressedListener;
+    public void setOnKeyBackPressedListener(MainActivity.onKeyBackPressedListener listener) {
+        mOnKeyBackPressedListener = listener;
+    }
+
     @Override
     public void onBackPressed() {
-        backKeyHandler.onBackPressed();
+        Log.d("spinemedical","MainActivity onBackPressed start");
+
+        if (mOnKeyBackPressedListener != null) {
+            Log.d("spinemedical","MainActivity onBackPressed if");
+            mOnKeyBackPressedListener.onBackKey();
+        } else {
+            Log.d("spinemedical","MainActivity onBackPressed else");
+            backKeyHandler.onBackPressed();
+        }
     }
 }
