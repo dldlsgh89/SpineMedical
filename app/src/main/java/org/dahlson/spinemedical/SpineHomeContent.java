@@ -2,6 +2,7 @@ package org.dahlson.spinemedical;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.dahlson.spinemedical.model.SpineDataModel;
+import org.dahlson.spinemedical.util.DatePickerFragment;
 import org.dahlson.spinemedical.util.RecyclerDecoration;
 
 public class SpineHomeContent extends Fragment {
@@ -37,6 +41,25 @@ public class SpineHomeContent extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         wear_state.setAdapter(adapter);  //스피너에 어댑터 설정하기
+
+        TextView startDt = viewGroup.findViewById(R.id.start_dt);
+        TextView endDt = viewGroup.findViewById(R.id.end_dt);
+
+        //조회 시작일
+        startDt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
+        //조회 종료일
+        endDt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         return viewGroup;
     }
@@ -85,5 +108,13 @@ public class SpineHomeContent extends Fragment {
         recyclerView.addItemDecoration(spaceDecoration);
 
     }
+
+   /* @Override
+    public void showDatePicker(){
+    }
+
+    @Override
+    public void processDatePickerResult(){
+    }*/
 
 }

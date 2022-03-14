@@ -30,7 +30,7 @@
                 android:background="@drawable/border_bottom">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/device_num"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:textSize="25dp"
@@ -166,7 +166,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/textView7"
+                    android:id="@+id/hospital_name"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:textSize="25dp"
@@ -201,7 +201,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/textView9"
+                    android:id="@+id/doctor_name"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
@@ -229,6 +229,7 @@
                 android:layout_height="wrap_content"
                 android:text="성별" />
             <RadioGroup
+                android:id="@+id/radio_btn_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -261,13 +262,14 @@
                 android:text="생년월일" />
 
             <CalendarView
-                android:id="@+id/Birthday"
+                android:id="@+id/birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                />
 
 
 
@@ -298,7 +300,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/join_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="회원가입" />
