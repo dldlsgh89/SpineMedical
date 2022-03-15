@@ -56,6 +56,8 @@ public class MoreMainFragment extends Fragment{
         });
         //로그아웃버튼
         logout.setOnClickListener(new View.OnClickListener() {
+            //action
+            //로그아웃 관련 로직 필요
             @Override
             public void onClick(View v) {
                 ((MoreActivity)getActivity()).MainActivity();

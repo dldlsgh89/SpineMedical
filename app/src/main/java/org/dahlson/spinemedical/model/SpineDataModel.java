@@ -2,16 +2,20 @@ package org.dahlson.spinemedical.model;
 
 public class SpineDataModel {
     int idex;
-    double temperature;
-    double pressure;
-    int wear;
-    String insert_dt;
+    double temperature;  //온도
+    double pressure;  //압력
+    String wear;  //착용유무
+    String insert_dt;  //데이터 등록일
 
     public SpineDataModel(int idex, double temperature, double pressure, int wear, String insert_dt) {
         this.idex = idex;
         this.temperature = temperature;
         this.pressure = pressure;
-        this.wear = wear;
+        if(wear == 1){
+            this.wear = "착용";
+        }else{
+            this.wear = "미착용";
+        }
         this.insert_dt = insert_dt;
     }
 
@@ -39,11 +43,11 @@ public class SpineDataModel {
         this.pressure = pressure;
     }
 
-    public int getWear() {
+    public String getWear() {
         return wear;
     }
 
-    public void setWear(int wear) {
+    public void setWear(String wear) {
         this.wear = wear;
     }
 

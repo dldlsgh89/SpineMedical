@@ -45,11 +45,6 @@ public class SpineHomeConnect extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //CustomDialog customDialog = new CustomDialog(getActivity());
-                // 커스텀 다이얼로그를 호출한다.
-                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
-                //customDialog.callFunction();
-
                 Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.custom_dialog3);
@@ -58,22 +53,46 @@ public class SpineHomeConnect extends Fragment {
                 Button closeButton = dialog.findViewById(R.id.close_btn);
                 Button cancelButton = dialog.findViewById(R.id.cancel_btn);
 
+                TextView nowPressure = dialog.findViewById(R.id.now_pressure);  //현재 압력
+                TextView averagePressure = dialog.findViewById(R.id.average_pressure);  //평균 압력
+                TextView nowTemperature = dialog.findViewById(R.id.now_temperature);  //현재 온도
+                TextView averageTemperature = dialog.findViewById(R.id.average_temperature);  //평균 온도
+
+                //체크시작버튼
                 okButton.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
+                        //체크시작버튼 클릭시 시작버튼 안보이고 취소버튼 보임
                         okButton.setVisibility(View.GONE);
                         cancelButton.setVisibility(View.VISIBLE);
+                        
+                        //action
+                        //연동된 센서모듈에서 실시간 데이터 받아와 보여주는 로직 필요
+                        
+                        //임의의 데이터니까 지워도 됨
+                        nowPressure.setText("0.6");
+                        averagePressure.setText("0.5");
+                        nowTemperature.setText("20.4");
+                        averageTemperature.setText("20.6");
                     }
                 });
-
+                
+                //정지버튼
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //정지버튼 클릭시 정지버튼 안보이고 시작버튼 보임
                         cancelButton.setVisibility(View.GONE);
                         okButton.setVisibility(View.VISIBLE);
+
+                        nowPressure.setText("-");
+                        averagePressure.setText("-");
+                        nowTemperature.setText("-");
+                        averageTemperature.setText("-");
                     }
                 });
-
+                
+                //닫기버튼
                 closeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -99,16 +118,21 @@ public class SpineHomeConnect extends Fragment {
 
                 Button okButton = dialog.findViewById(R.id.okButton);
                 Button cancelButton = dialog.findViewById(R.id.cancelButton);
-
+                
+                //데이터 전송 확인 버튼 클릭
                 okButton.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
                         dialog.dismiss();
+                        //action
+                        //연동된 센서모듈에서 저장된 데이터를 받아와 서버로 전송해줘야함.
+                        //화면 보여주기용 프로그래스 다이얼로그
                         CheckTypesTask checkTypesTask = new CheckTypesTask(getActivity());
                         checkTypesTask.execute();
                     }
                 });
-
+        
+                //취소 버튼 클릭
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

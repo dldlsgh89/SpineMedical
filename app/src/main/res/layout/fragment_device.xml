@@ -28,6 +28,7 @@
                 android:hint="현재 연결된 기기가 없습니다."
                 android:inputType="textPersonName"
                 android:textColorHint="#DCDCDC"
+                android:text="MODEL-1154"
                 android:enabled="true"
                 android:textSize="25dp" />
         </LinearLayout>
@@ -57,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/border_bottom"
-                android:hint="연동이 필요합니다."
+                android:hint="연결이 필요합니다."
                 android:inputType="textPersonName"
                 android:textColor="#2ECC71"
                 android:textColorHint="#DCDCDC"

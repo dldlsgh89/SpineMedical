@@ -58,11 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     //프레그먼트 내부에서 다른 프레그먼트로 전환
-    public void replaceJoinFragment(JoinFragment joinFragment, String text) {
+    public void replaceJoinFragment(JoinFragment joinFragment) {
         Log.d("spinemedical", "replaceJoinFragment start");
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        joinFragment.setArguments(text);
         fragmentTransaction.replace(R.id.LoginFragment, joinFragment).addToBackStack(null).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
 

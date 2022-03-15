@@ -35,7 +35,15 @@ public class MoreActivity extends BaseActivity {
         inflateHeader("더보기");
     }
 
-
+    //프레그먼트 내부에서 다른 프레그먼트로 전환
+    public void moreMainFragment(MoreMainFragment fragment, String text) {
+        Log.d("spinemedical", "moreMainFragment start");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_fragment, fragment).commit();
+        //MoreActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
+        //MoreActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).commit();
+    }
 
     //프레그먼트 내부에서 다른 프레그먼트로 전환
     public void patientFragment(PatientFragment fragment, String text) {
@@ -91,4 +99,15 @@ public class MoreActivity extends BaseActivity {
             backKeyHandler.onBackPressed();
         }
     }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_more;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.more_tab;
+    }
+
 }

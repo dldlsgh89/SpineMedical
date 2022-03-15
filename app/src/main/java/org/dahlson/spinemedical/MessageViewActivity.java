@@ -66,4 +66,14 @@ public class MessageViewActivity extends BaseActivity{
 
         popupLayout.setLayoutParams(params);
     }*/
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_message_view;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.message_tab;
+    }
 }

@@ -31,51 +31,67 @@ public class SpineHomeNoneConnect extends Fragment {
         Log.d("spinemedical","SpineHomeNoneConnect onCreateView start");
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_home_none_connect, container, false);
 
+        //기기연동 버튼 클릭
         Button button = viewGroup.findViewById(R.id.gearing_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("spinemedical","SpineHomeNoneConnect onCreateView onClick start");
-                //request_dialog();
+                //먼저 연동할 수 있는 기기가 있는지 체크하는 로직 필요 -
 
-                /*TextView textView = getActivity().findViewById(R.id.textView13);
-                CustomDialog customDialog = new CustomDialog(getActivity());
-                // 커스텀 다이얼로그를 호출한다.
-                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
-                customDialog.callFunction();*/
 
                 Dialog dialog = new Dialog(getActivity());
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.custom_dialog);
+                boolean checkConnect = true;
+                //연동할 기기가 있을때
+                if(checkConnect){
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.custom_dialog);
 
-                Button okButton = dialog.findViewById(R.id.okButton);
-                Button cancelButton = dialog.findViewById(R.id.cancelButton);
+                    Button okButton = dialog.findViewById(R.id.okButton);
+                    Button cancelButton = dialog.findViewById(R.id.cancelButton);
 
-                okButton.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
+                    okButton.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View view){
 
-                        //하단 버튼 프래그먼트 변경
-                        ((SpineHomeActivity)getActivity()).ConnectFragment(SpineHomeConnect.newInstance(), "");
-                        
-                        //다이얼로그 변경 및 버튼 리스너 추가
-                        dialog.setContentView(R.layout.custom_dialog2);
-                        Button okButton2 = dialog.findViewById(R.id.okButton);
-                        okButton2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                            }
-                        });
-                    }
-                });
+                            //연동 로직 필요 -
 
-                cancelButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
+
+                            //하단 버튼 프래그먼트 변경
+                            ((SpineHomeActivity)getActivity()).ConnectFragment(SpineHomeConnect.newInstance(), "");
+                            //다이얼로그 변경 및 버튼 리스너 추가
+                            dialog.setContentView(R.layout.custom_dialog2);
+                            Button okButton2 = dialog.findViewById(R.id.okButton);
+                            okButton2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    });
+
+                    cancelButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                }else{  //연동할 기기가 없을때
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.custom_dialog2);
+                    TextView titleText = dialog.findViewById(R.id.message);
+                    titleText.setText("연동할 기기가 없습니다.");
+
+                    Button okButton = dialog.findViewById(R.id.okButton);
+                    okButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                }
 
                 dialog.show();
             }
@@ -84,7 +100,7 @@ public class SpineHomeNoneConnect extends Fragment {
         return viewGroup;
     }
 
-    public void request_dialog(){
+    /*public void request_dialog(){
         String title = "원격 요청";
         String message = "데이터를 요청하시겠습니까?";
         String titleButtonYes = "예";
@@ -118,5 +134,5 @@ public class SpineHomeNoneConnect extends Fragment {
         });
 
         return builder.create();
-    }
+    }*/
 }

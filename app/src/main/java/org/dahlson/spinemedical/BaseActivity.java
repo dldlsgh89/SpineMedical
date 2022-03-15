@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,52 +19,25 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
 
     protected static Activity activity;
     protected LinearLayout headerLayout;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_base);
     }
 
-    /*@Override
-    public void setContentView(int layoutResID){
-        LinearLayout fullView = (LinearLayout) getLayoutInflater().inflate(layoutResID, null);
-        ConstraintLayout activityContainer = (ConstraintLayout) fullView.findViewById(R.id.main_fragment);
-        getLayoutInflater().inflate(layoutResID, activityContainer, true);
-        super.setContentView(fullView);
-
-        activity = this;
-       *//* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //툴바 사용여부 결정(기본적으로 사용)
-        if(useToolbar()){ setSupportActionBar(toolbar);
-            setTitle("툴바예제");
-        } else {
-            toolbar.setVisibility(View.GONE);
-        }*//*
-    }*/
-
+    //activiy 화면을 inflate하고 bottomNavigationView에 itemselectListener 바인딩
     protected void customSetContentView(int layoutResID){
         LinearLayout fullView = (LinearLayout) getLayoutInflater().inflate(layoutResID, null);
         ConstraintLayout activityContainer = (ConstraintLayout) fullView.findViewById(R.id.main_fragment);
         super.setContentView(fullView);
-
         activity = this;
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.home_menu_bar);
-        ItemSelectedListener itemSelectedListener = new ItemSelectedListener(activity);
-        bottomNavigationView.setOnItemSelectedListener(itemSelectedListener);
-       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //툴바 사용여부 결정(기본적으로 사용)
-        if(useToolbar()){ setSupportActionBar(toolbar);
-            setTitle("툴바예제");
-        } else {
-            toolbar.setVisibility(View.GONE);
-        }*/
-
+        bottomNavigationView = findViewById(R.id.home_menu_bar);
+        bottomNavigationView.setOnItemSelectedListener(this);
     }
 
     //해더 타이틀 변경
@@ -89,76 +63,55 @@ public class BaseActivity extends AppCompatActivity {
         headerLayout2.setBackgroundColor(Color.parseColor(text));
     }
 
-    //툴바를 사용할지 말지 정함
-    protected boolean useToolbar(){
-        return true;
-    }
-
-    /*//메뉴 등록하기
+    //시작시 현재 activity의 네비게이션메뉴의 itemid를 가져옴
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.mymenu, menu);
-        return true;
-    }*/
-
-    //앱바 메뉴 클릭 이벤트
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_menu1:
-                Toast.makeText(getApplicationContext()
-                        ,"메뉴1 클릭"
-                        , Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, SubActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_menu2:
-                Toast.makeText(getApplicationContext()
-                        ,"메뉴2 클릭"
-                        , Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(this, Sub2Activity.class);
-                startActivity(intent2);
-                return true;
-            case R.id.action_settings:
-                // User chose the "Settings" item, show the app settings UI...
-                Toast.makeText(getApplicationContext()
-                        ,"앱설정"
-                        , Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-        }
-    }*/
-
-
-    static class ItemSelectedListener extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
-        private Context context;
-        public ItemSelectedListener(Context thisContext) {
-            this.context = thisContext;
-        }
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            Intent intent2;
-            switch(menuItem.getItemId()) {
-                case R.id.data_tab:
-                    intent2 = new Intent(context, SpineHomeActivity.class);
-                    context.startActivity(intent2);
-                    activity.finish();
-                    break;
-                case R.id.message_tab:
-                    intent2 = new Intent(context, MessageActivity.class);
-                    context.startActivity(intent2);
-                    activity.finish();
-                    break;
-                case R.id.more_tab:
-                    intent2 = new Intent(context, MoreActivity.class);
-                    context.startActivity(intent2);
-                    activity.finish();
-                    break;
-            }
-            return true;
-        }
+    protected void onStart() {
+        super.onStart();
+        updateNavigationBarState();
     }
+
+    // Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+    
+    //선택된 메뉴 activity로 이동
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent2;
+        switch(item.getItemId()) {
+            case R.id.data_tab:
+                intent2 = new Intent(this, SpineHomeActivity.class);
+                this.startActivity(intent2);
+                break;
+            case R.id.message_tab:
+                intent2 = new Intent(this, MessageActivity.class);
+                this.startActivity(intent2);
+                break;
+            case R.id.more_tab:
+                intent2 = new Intent(this, MoreActivity.class);
+                this.startActivity(intent2);
+                break;
+        }
+        this.finish();
+        return true;
+    }
+
+    private void updateNavigationBarState(){
+        int actionId = getNavigationMenuItemId();
+        selectBottomNavigationBarItem(actionId);
+    }
+
+    //선택된 메뉴아이템을 check
+    void selectBottomNavigationBarItem(int itemId) {
+        MenuItem item = bottomNavigationView.getMenu().findItem(itemId);
+        item.setChecked(true);
+    }
+
+    abstract int getContentViewId();
+
+    abstract int getNavigationMenuItemId();
+
 }

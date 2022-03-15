@@ -5,23 +5,21 @@
     <item
         android:id="@+id/data_tab"
         app:showAsAction="ifRoom"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:icon="@drawable/icons8_list_30"
         android:title="데이터"
         />
 
     <item
         android:id="@+id/message_tab"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/icons8_topic_50"
         android:title="메시지"
         />
 
     <item
         android:id="@+id/more_tab"
         app:showAsAction="ifRoom"
-        android:enabled="true"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/icons8_more_30"
         android:title="더보기"
         />
 

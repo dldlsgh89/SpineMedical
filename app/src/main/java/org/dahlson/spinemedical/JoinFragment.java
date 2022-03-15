@@ -105,18 +105,9 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
         });
 
         CalendarView birthday = viewGroup.findViewById(R.id.birthday);
-        //Log.d("spinemedical", "birthday.getDate() : " + birthday.getDate());
         Date date = new Date(birthday.getDate());
-               /* Log.d("spinemedical", "date.getYear() : " + date.getYear());
-                Log.d("spinemedical", "date.getMonth() : " + date.getMonth());
-                Log.d("spinemedical", "date.getDay() : " + date.getDay());
-                Log.d("spinemedical", "date.getTime() : " + date.getTime());
-                Log.d("spinemedical", "date.toString() : " + date.toString());*/
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-                /*Log.d("spinemedical", "calendar.get(Calendar.YEAR) : " + calendar.get(Calendar.YEAR));
-                Log.d("spinemedical", "dcalendar.get(Calendar.YEAR): " + calendar.get(Calendar.MONTH+1));
-                Log.d("spinemedical", "calendar.get(Calendar.YEAR) : " + calendar.get(Calendar.DAY_OF_MONTH));*/
 
         String monthZero = NumberUtil.smallerThanTen(calendar.get(Calendar.MONTH)+1);
         String dayZero =  NumberUtil.smallerThanTen(calendar.get(Calendar.DAY_OF_MONTH));
@@ -129,6 +120,8 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Dialog dialog = new Dialog(getActivity());
+
                 EditText deviceNum = viewGroup.findViewById(R.id.device_num);
                 EditText loginId = viewGroup.findViewById(R.id.login_id);
                 EditText loginPw = viewGroup.findViewById(R.id.login_pw);
@@ -156,13 +149,6 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
 
                 EditText email = viewGroup.findViewById(R.id.email);
 
-                Dialog dialog = new Dialog(getActivity());
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.custom_dialog2);
-
-                TextView message = dialog.findViewById(R.id.message);
-                message.setText("입력되지 않은 정보가 있습니다.");
-                Button okButton = dialog.findViewById(R.id.okButton);
 
                 boolean formCheck = true;
                 String strDeviceNum = String.valueOf(deviceNum.getText()); //기기번호
@@ -202,13 +188,9 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
                     formCheck = false;
                 }
 
-                okButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
 
+
+                //입력폼 체크
                 if(formCheck){
                     //action
                     //개별 input 별 유효성검사 추가 필요
@@ -222,7 +204,7 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
                     strBirthday; 생년월일
                     strEmail; //이메일
                     gender; //성별*/
-                    Log.d("spinemedical", "strDeviceNum : " + strDeviceNum);
+                   /* Log.d("spinemedical", "strDeviceNum : " + strDeviceNum);
                     Log.d("spinemedical", "strLoginId : " + strLoginId);
                     Log.d("spinemedical", "strLoginPw : " + strLoginPw);
                     Log.d("spinemedical", "strPwCheck : " + strPwCheck);
@@ -231,11 +213,65 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
                     Log.d("spinemedical", "strDoctorName : " + strDoctorName);
                     Log.d("spinemedical", "strBirthday : " + strBirthday);
                     Log.d("spinemedical", "strEmail : " + strEmail);
-                    Log.d("spinemedical", "gender : " + gender);
+                    Log.d("spinemedical", "gender : " + gender);*/
+                    //새로운 비밀번호 체크
+                    if(!strLoginPw.equals(strPwCheck)){
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.custom_dialog2);
+                        TextView message = dialog.findViewById(R.id.message);
+                        message.setText("비밀번호가 일치하지 않습니다.");
+                        Button okButton = dialog.findViewById(R.id.okButton);
+                        okButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }else{
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.custom_dialog);
+                        TextView message = dialog.findViewById(R.id.message);
+                        message.setText("가입하시겠습니까?");
+                        Button okButton = dialog.findViewById(R.id.okButton);
+                        Button cancelButton = dialog.findViewById(R.id.cancelButton);
+                        okButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //가입환자 정보 서버로 넘겨주는 로직 필요
+                                dialog.setContentView(R.layout.custom_dialog2);
+                                TextView message = dialog.findViewById(R.id.message);
+                                message.setText("가입되었습니다.");
+                                Button okButton = dialog.findViewById(R.id.okButton);
+                                okButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        ((MainActivity)getActivity()).replaceLoginFragment(LoginFragment.newInstance());
+                                        dialog.dismiss();
+                                    }
+                                });
+                            }
+                        });
+                        cancelButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
                 }else{
-                    dialog.show();
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.custom_dialog2);
+                    TextView message = dialog.findViewById(R.id.message);
+                    message.setText("입력되지 않은 정보가 있습니다.");
+                    Button okButton = dialog.findViewById(R.id.okButton);
+                    okButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
                 }
-
+                dialog.show();
             }
         });
 

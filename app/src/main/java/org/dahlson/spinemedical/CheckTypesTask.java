@@ -22,6 +22,7 @@ public class CheckTypesTask extends AsyncTask<Void, Void, Void> {
             this.endDialog = new Dialog(context);
         }
 
+        //작업중일때
         public void progressRunning(){
             asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             asyncDialog.setMessage("데이터 전송중입니다...");
@@ -29,6 +30,7 @@ public class CheckTypesTask extends AsyncTask<Void, Void, Void> {
             asyncDialog.show();
         }
 
+        //작업끝났을때
         public void endDialog(){
             endDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             endDialog.setContentView(R.layout.custom_dialog2);

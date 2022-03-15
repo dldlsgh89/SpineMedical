@@ -11,9 +11,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="20dp">
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <ImageView
@@ -29,14 +28,12 @@
                 app:srcCompat="@drawable/calendar" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginRight="20dp"
             android:layout_weight="2"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/start_dt"
                 android:layout_width="match_parent"
@@ -53,14 +50,26 @@
                 android:gravity="center"
                 android:text="2022-04-01" />
         </LinearLayout>
-
         <Spinner
             android:id="@+id/wear_state"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
+            android:paddingRight="25dp"
             android:background="@drawable/bg_spinner_year"
             android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/select_spine_data"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:background="@drawable/border_all_radius"
+            android:layout_marginLeft="5dp"
+            android:text="조회"/>
+
 
     </LinearLayout>
 

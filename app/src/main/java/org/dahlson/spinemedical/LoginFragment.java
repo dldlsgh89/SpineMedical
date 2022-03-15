@@ -79,7 +79,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
 
                 //getActivity()로 MainActivity의 replaceFragment를 불러옵니다.
-                ((MainActivity)getActivity()).replaceJoinFragment(JoinFragment.newInstance(), "");    // 새로 불러올 Fragment의 Instance를 Main으로 전달*/
+                ((MainActivity)getActivity()).replaceJoinFragment(JoinFragment.newInstance());    // 새로 불러올 Fragment의 Instance를 Main으로 전달*/
             }
         });
 

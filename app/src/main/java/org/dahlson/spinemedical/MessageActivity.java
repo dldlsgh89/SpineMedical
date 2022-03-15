@@ -63,5 +63,13 @@ public class MessageActivity extends BaseActivity {
         return "@drawable/" + fileName;
     }
 
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_message;
+    }
 
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.message_tab;
+    }
 }
