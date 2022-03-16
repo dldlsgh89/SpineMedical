@@ -16,7 +16,7 @@ public class MessageViewActivity extends BaseActivity{
 
     RecyclerView recyclerView;
     Point size;
-    //LinearLayout popupLayout;
+    private BackKeyHandler backKeyHandler = new BackKeyHandler(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +66,14 @@ public class MessageViewActivity extends BaseActivity{
 
         popupLayout.setLayoutParams(params);
     }*/
+
+    public void onBackPressed() {
+        Log.d("spinemedical","MessageViewActivity onBackPressed start");
+        Intent intent = new Intent(this, MessageActivity.class);
+        startActivity(intent);
+        //MainActivity를 종료(메모리에서 제거)
+        finish();
+    }
 
     @Override
     int getContentViewId() {

@@ -16,6 +16,7 @@ import org.dahlson.spinemedical.model.MessageModel;
 public class MessageActivity extends BaseActivity {
     RecyclerView recyclerView;
     Context context;
+    private BackKeyHandler backKeyHandler = new BackKeyHandler(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +58,11 @@ public class MessageActivity extends BaseActivity {
     private String getURLForResource(int resId) {
         //return Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + resId).toString();
         return "android.resource://" + R.class.getPackage().getName() + "/" + resId;
+    }
+
+    public void onBackPressed() {
+        Log.d("spinemedical","MessageActivity onBackPressed start");
+        backKeyHandler.onBackPressed();
     }
 
     private String getURLForDrawable(String fileName) {
