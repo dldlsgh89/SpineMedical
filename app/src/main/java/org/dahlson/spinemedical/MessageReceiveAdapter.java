@@ -33,7 +33,7 @@ public class MessageReceiveAdapter extends RecyclerView.Adapter<MessageReceiveAd
     //onCreateViewHolder 호출전 호출하여 viewType 리턴
     @Override
     public int getItemViewType(int position){
-        return items.get(position).getView_type();
+        return items.get(position).getViewType();
     }
 
     //뷰홀더 생성해주면서 뷰홀더에 담길 화면(item_view) 객체에 연결 - 보통 13~15번만 호출됨.
@@ -140,10 +140,10 @@ public class MessageReceiveAdapter extends RecyclerView.Adapter<MessageReceiveAd
                 Log.d("spinemedical", "item.getFromName() : " + item.getFromName());
                 fromName.setText(item.getFromName().toString());
                 content.setText(String.valueOf(item.getContent()));
-                insert_dt.setText(String.valueOf(item.getInsert_dt()));
-                Log.d("spinemedical", "item.getImg_url() :" + item.getImg_url());
+                insert_dt.setText(String.valueOf(item.getInsertDt()));
+                Log.d("spinemedical", "item.getImg_url() :" + item.getImgUrl());
                 //imageView.setImageURI(Uri.parse(item.getImg_url()));
-                new MessageReceiveAdapter.DownloadFilesTask(imageView, item.getImg_url()).execute();
+                new MessageReceiveAdapter.DownloadFilesTask(imageView, item.getImgUrl()).execute();
                 //imageView.setImageResource(item.getImg_url());
             /*}else{
                 content.setText(String.valueOf(item.getContent()));

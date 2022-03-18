@@ -1,35 +1,14 @@
 package org.dahlson.spinemedical;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+public class MessageAdapterRollback{
+//public class MessageAdapterRollback extends RecyclerView.Adapter<MessageAdapterRollback.ViewHolder> implements OnMessageItemClickListener{
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import org.dahlson.spinemedical.model.MessageModel;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> implements OnMessageItemClickListener{
-
-    private Context context;
+    /*private Context context;
     private ViewGroup viewGroup;
     int viewType;
     OnMessageItemClickListener listener;
     ArrayList<MessageModel> items = new ArrayList<MessageModel>();
+    ArrayList<DocterModel> items2 = new ArrayList<DocterModel>();
 
     //onCreateViewHolder 호출전 호출하여 viewType 리턴
     @Override
@@ -41,39 +20,65 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        MessageAdapter.ViewHolder newViewHolder;
-        Log.d("spinemedical", "onCreateViewHolder - viewType :" + viewType);
-
+        MessageAdapterRollback.ViewHolder newViewHolder;
         View itemView;
-        if(viewType == 5){
+        this.viewType = viewType;
+        if(viewType == 1){
+            Log.d("spinemedical", "onCreateViewHolder :" + viewType);
             itemView = inflater.inflate(R.layout.message_item, parent, false);
-        }else if(viewType == 6){
+        }else if(viewType == 2){
+            Log.d("spinemedical", "onCreateViewHolder :" + viewType);
             itemView = inflater.inflate(R.layout.new_message_item, parent, false);
         }else{
             itemView = null;
         }
 
-
-        //newViewHolder = new MessageReceiveAdapter.ViewHolder(itemView, trueFalse);
-        newViewHolder = new MessageAdapter.ViewHolder(itemView,this, viewType);
-
-        return newViewHolder;
+        return new ViewHolder(itemView, this, viewType);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MessageModel item = items.get(position);
-        holder.setItem(item);
+        Object item;
+        if(viewType == 1){
+            Log.d("spinemedical", "onBindViewHolder :" + viewType);
+            item = items.get(position);
+        }else if(viewType ==2){
+            Log.d("spinemedical", "onBindViewHolder :" + viewType);
+            item = items2.get(position);
+        }else{
+            item = null;
+        }
+        //MessageModel item = items.get(position);
+     *//*   if(viewType == 1){
+            holder.setItem(item);
+        }else if(viewType == 2){*//*
+            holder.setItem(item, viewType);
+        //}
+
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        int returnSize = 0;
+        if(viewType == 1){
+            Log.d("spinemedical", "getItemCount :" + viewType);
+            returnSize = items.size();
+        }else if(viewType ==2) {
+            Log.d("spinemedical", "getItemCount :" + viewType);
+            returnSize =  items2.size();
+        }
+        return returnSize;
     }
 
 
-    public void addItem(MessageModel item){
+    public void addItem(MessageModel item, int viewType){
+        Log.d("spinemedical", "addItem :" + viewType);
         items.add(item);
+    }
+
+    public void addItem(DocterModel item){
+        Log.d("spinemedical", "addItem :" + viewType);
+        items2.add(item);
     }
 
     public void setItems(ArrayList<MessageModel> items){
@@ -106,53 +111,58 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         TextView fromName;
         TextView content;
         TextView insert_dt;
-        int viewType;
 
-        TextView hospitalName;
         TextView doctorName;
-
+        TextView hospitalName;
+        //int viewType;
 
         public ViewHolder(View itemView, final OnMessageItemClickListener listener, int viewType){
             super(itemView);
-            this.viewType = viewType;
-            imageView = itemView.findViewById(R.id.message_img);
-            if(viewType == 5){
+            //this.viewType = viewType;
+            if(viewType == 1){
+                Log.d("spinemedical", "ViewHolder :" + viewType);
+                imageView = itemView.findViewById(R.id.message_img);
                 fromName = itemView.findViewById(R.id.message_title);
                 content = itemView.findViewById(R.id.message_content);
                 insert_dt = itemView.findViewById(R.id.message_date);
-            }else{
-                hospitalName = itemView.findViewById(R.id.doctor_name);
-                doctorName = itemView.findViewById(R.id.hospital_name);
-            }
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if(listener != null){
-                        listener.onItemClick(ViewHolder.this, view, position);
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int position = getAdapterPosition();
+                        if(listener != null){
+                            listener.onItemClick(ViewHolder.this, view, position);
+                        }
                     }
-                }
-            });
+                });
+            }else if(viewType == 2){
+                Log.d("spinemedical", "ViewHolder :" + viewType);
+                imageView = itemView.findViewById(R.id.message_img);
+                doctorName = itemView.findViewById(R.id.doctor_name);
+                hospitalName = itemView.findViewById(R.id.hospital_name);
+            }
         }
-        public void setItem(MessageModel item){
-            Log.d("spinemedical", "setItem - start");
-            if(viewType == 5){
+
+        public void setItem(Object items, int viewType){
+        //public void setItem(MessageModel item){
+            if(viewType == 1){
+                Log.d("spinemedical", "ViewHolder :" + viewType);
+                MessageModel item = (MessageModel) items;
                 fromName.setText(item.getFromName().toString());
                 content.setText(String.valueOf(item.getContent()));
                 insert_dt.setText(String.valueOf(item.getInsertDt()));
-            }else{
+                new DownloadFilesTask(imageView, item.getImgUrl()).execute();
+            }else if(viewType == 2){
+                Log.d("spinemedical", "ViewHolder :" + viewType);
+                DocterModel item = (DocterModel) items;
                 doctorName.setText(String.valueOf(item.getDoctorName()));
                 hospitalName.setText(String.valueOf(item.getHospitalName()));
+                new DownloadFilesTask(imageView, item.getImgUrl()).execute();
             }
-            //imageView.setImageURI(Uri.parse(item.getImg_url()));
-            new DownloadFilesTask(imageView, item.getImgUrl()).execute();
-            //imageView.setImageResource(item.getImg_url());
         }
 
     }
 
-   /* public class ItemView extends LinearLayout {
+   *//* public class ItemView extends LinearLayout {
         public ItemView(Context context, @LayoutRes int resource){
             super(context);
 
@@ -160,7 +170,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
             View view = inflater.inflate(resource, this, true);
         }
-    }*/
+    }*//*
 
 
     private static class DownloadFilesTask extends AsyncTask<String,Void, Bitmap> {
@@ -175,7 +185,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         @Override
         protected Bitmap doInBackground(String... strings) {
             //기존
-            /*Bitmap bmp = null;
+            *//*Bitmap bmp = null;
             try {
                 String img_url = strings[0]; //url of the image
                 URL url = new URL(img_url);
@@ -185,7 +195,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return bmp;*/
+            return bmp;*//*
 
             //수정
             Bitmap bmp = null;
@@ -217,6 +227,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             imageView.setImageBitmap(result);
         }
     }
+
+    */
     /*주의사항
     1.  인터넷 관련 작업을 할 때는 인터넷 권한을 허용해줘야합니다.
     <uses-permission android:name="android.permission.INTERNET" />

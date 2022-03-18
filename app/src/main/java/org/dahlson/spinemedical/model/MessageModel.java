@@ -1,20 +1,33 @@
 package org.dahlson.spinemedical.model;
 
-public class MessageModel {
-    int idex;
-    String img_url;
-    String fromName;
-    String content;
-    String insert_dt;
-    int view_type;
+import org.dahlson.spinemedical.PassFragment;
 
-    public MessageModel(int idex, String img_url, String fromName, String content, String insert_dt, int view_type) {
+public class MessageModel {
+    int idex = 0;
+    String imgUrl = "";
+    String fromName = "";
+    String content = "";
+    String insertDt = "";
+    int viewType = 0;  //1, 2, 3, 4 = message view
+    //5 = message list
+    // 6 = 신규 메시지를 보낼 회원 조회 리스트
+
+    String userId;
+    String doctorName;
+    String hospitalName;
+    String speciality;
+
+    public MessageModel() {
+
+    }
+
+    public MessageModel(int idex, String imgUrl, String fromName, String content, String insertDt, int viewType) {
         this.idex = idex;
-        this.img_url = img_url;
+        this.imgUrl = imgUrl;
         this.fromName = fromName;
         this.content = content;
-        this.insert_dt = insert_dt;
-        this.view_type = view_type;
+        this.insertDt = insertDt;
+        this.viewType = viewType;
     }
 
     public int getIdex() {
@@ -25,12 +38,12 @@ public class MessageModel {
         this.idex = idex;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getFromName() {
@@ -49,19 +62,51 @@ public class MessageModel {
         this.content = content;
     }
 
-    public String getInsert_dt() {
-        return insert_dt;
+    public String getInsertDt() {
+        return insertDt;
     }
 
-    public void setInsert_dt(String insert_dt) {
-        this.insert_dt = insert_dt;
+    public void setInsertDt(String insertDt) {
+        this.insertDt = insertDt;
     }
 
-    public int getView_type() {
-        return view_type;
+    public int getViewType() {
+        return viewType;
     }
 
-    public void setView_type(int view_type) {
-        this.view_type = view_type;
+    public void setViewType(int viewType) {
+        this.viewType = viewType;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getHospitalName() {
+        return hospitalName;
+    }
+
+    public void setHospitalName(String hospitalName) {
+        this.hospitalName = hospitalName;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 }

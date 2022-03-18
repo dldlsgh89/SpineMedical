@@ -45,7 +45,9 @@
             android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="새로운 메세지 작성"
-            android:background="@drawable/plus"></androidx.appcompat.widget.AppCompatImageButton>
+            android:background="@drawable/plus">
+
+        </androidx.appcompat.widget.AppCompatImageButton>
     </LinearLayout>
 
     <!--하단 메뉴바-->

@@ -30,7 +30,7 @@ public class MessageSendAdapter extends RecyclerView.Adapter<MessageSendAdapter.
 
     @Override
     public int getItemViewType(int position){
-        return items.get(position).getView_type();
+        return items.get(position).getViewType();
     }
 
     @NonNull
@@ -102,8 +102,8 @@ public class MessageSendAdapter extends RecyclerView.Adapter<MessageSendAdapter.
             //if(check){
                 fromName.setText(item.getFromName().toString());
                 content.setText(String.valueOf(item.getContent()));
-                insert_dt.setText(String.valueOf(item.getInsert_dt()));
-                new MessageSendAdapter.DownloadFilesTask(imageView, item.getImg_url()).execute();
+                insert_dt.setText(String.valueOf(item.getInsertDt()));
+                new MessageSendAdapter.DownloadFilesTask(imageView, item.getImgUrl()).execute();
             /*}else{
                 content.setText(String.valueOf(item.getContent()));
                 insert_dt.setText(String.valueOf(item.getInsert_dt()));
