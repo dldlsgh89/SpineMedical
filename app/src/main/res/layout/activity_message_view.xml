@@ -46,12 +46,16 @@
             android:inputType="textMultiLine"
             android:lines="2"
             />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/message_send"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_weight="0"
-            android:text="전송"/>
+            android:backgroundTint="#3498DB"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:text="전송" />
     </LinearLayout>
 
     <!--하단 메뉴바-->

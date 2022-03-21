@@ -280,9 +280,9 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
         return viewGroup;
     }
 
-    public void setArguments(String arguments) {
+    /*public void setArguments(String arguments) {
         this.arguments = arguments;
-    }
+    }*/
 
     //BackStack 으로 뒤로가기 버튼 누르면 전 화면으로 이동하기 위함
     @Override

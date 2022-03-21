@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 public class LoginFragment extends Fragment {
@@ -31,6 +33,7 @@ public class LoginFragment extends Fragment {
 
         Button loginBtn = viewGroup.findViewById(R.id.login_btn);
         Button joinFormBtn = viewGroup.findViewById(R.id.join_form_btn);
+        Button findPwBtn = (Button) viewGroup.findViewById(R.id.find_pw);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,9 +80,16 @@ public class LoginFragment extends Fragment {
         joinFormBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //getActivity()로 MainActivity의 replaceFragment를 불러옵니다.
                 ((MainActivity)getActivity()).replaceJoinFragment(JoinFragment.newInstance());    // 새로 불러올 Fragment의 Instance를 Main으로 전달*/
+            }
+        });
+        
+        //비밀번호 초기화 화면으로 이동
+        findPwBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).replaceFinwPwFragment(FindPwFragment.newInstance());
             }
         });
 

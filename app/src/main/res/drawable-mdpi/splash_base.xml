@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient
         android:angle="90"
-        android:centerColor="#FF7288DB"
         android:centerY="0.5"
         android:endColor="#FF7288DB"
-        android:startColor="#FF3E50B4" />
+        android:centerColor="#FF3498DB"
+        android:startColor="#FF3E50B4"
+         />
     <corners android:radius="0dp" />
+</shape>
+-->
+
+<!--  초록색으로 변경해봤는데 느낌이 안삼-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<gradient
+    android:angle="90"
+    android:centerY="0.5"
+    android:endColor="#FF97EA8C"
+    android:centerColor="#FF21FF00"
+    android:startColor="#FF0E5E01"/>
+<corners android:radius="0dp" />
 </shape>

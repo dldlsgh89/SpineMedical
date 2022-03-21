@@ -297,6 +297,13 @@
                 android:textColorHint="#DCDCDC"
                 android:textSize="25dp" />
 
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이메일은 비밀번호 초기화 등에 사용됩니다."
+                android:textColor="#E74C3C" />
+
         </LinearLayout>
 
         <Button

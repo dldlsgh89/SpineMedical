@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //프레그먼트 내부에서 다른 프레그먼트로 전환
+    //가입 화면 프레그먼트로 전환
     public void replaceJoinFragment(JoinFragment joinFragment) {
         Log.d("spinemedical", "replaceJoinFragment start");
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -65,7 +65,15 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.LoginFragment, joinFragment).addToBackStack(null).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
 
-    //프레그먼트 내부에서 다른 프레그먼트로 전환
+    //비밀번호 찾기 화면 프레그먼트로 전환
+    public void replaceFinwPwFragment(FindPwFragment findPwFragment) {
+        Log.d("spinemedical", "replaceFinwPwFragment start");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.LoginFragment, findPwFragment).addToBackStack(null).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
+    }
+
+    //로그인 화면 프레그먼트로 전환
     public void replaceLoginFragment(LoginFragment loginFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

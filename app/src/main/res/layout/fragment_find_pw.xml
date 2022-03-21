@@ -10,6 +10,7 @@
         android:orientation="vertical"
         android:padding="30dp">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,20 +18,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/id_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="아이디" />
 
             <EditText
-                android:id="@+id/login_id"
+                android:id="@+id/id_text"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:hint="아이디를 입력해주십시오"
+                android:hint="비밀번호를 초기화할 아이디를 입력해주시기 바랍니다."
                 android:inputType="textPersonName"
                 android:textColorHint="#DCDCDC"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -40,24 +41,31 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/email_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="비밀번호" />
+                android:text="이메일" />
 
             <EditText
-                android:id="@+id/login_pw"
+                android:id="@+id/email_text"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:hint="비밀번호를 입력해주십시오"
+                android:hint="아이디에 등록된 이메일을 등록해주시기 바랍니다."
                 android:inputType="textPersonName"
                 android:textColorHint="#DCDCDC"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
+
+            <org.dahlson.spinemedical.util.CharacterWrapTextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호가 초기화되면 되돌릴 수 없으니 잘 생각해주시기 바랍니다."
+                android:textColor="#E74C3C" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/find_pw"
+            android:id="@+id/find_pw_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/border_all_radius"
@@ -70,33 +78,5 @@
             android:paddingRight="30dp"
             android:layout_gravity="center"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_top"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/login_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:background="#00ff0000"
-                android:text="로그인"
-                android:textColor="#4ABECA"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/join_form_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:background="#00ff0000"
-                android:text="회원가입"
-                android:textColor="#4ABECA"
-                android:textSize="20dp" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>
