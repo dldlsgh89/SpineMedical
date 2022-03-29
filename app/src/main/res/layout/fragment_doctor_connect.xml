@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/label1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="현재 담당의" />
+
+            <TextView
+                android:id="@+id/now_device"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="현재 연결된 담당의가 없습니다."
+                android:inputType="textPersonName"
+                android:textColorHint="#DCDCDC"
+                android:text="test"
+                android:enabled="true"
+                android:textSize="25dp"
+                android:textColor="#000"
+                android:padding="5dp"
+                android:background="@drawable/border_bottom_black"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:id="@+id/label2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="의사 검색"
+                android:textColor="#000000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/search_doctor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@drawable/border_none"
+                    android:hint="이름이나 아이디를 입력해주시기 바랍니다."
+                    android:inputType="textPersonName"
+                    android:textColorHint="#DCDCDC"
+                    android:textSize="25dp"
+                    android:layout_weight="1"
+                    />
+
+                <Button
+                    android:id="@+id/search_doctor_btn"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:text="검색"
+                    android:layout_weight="0"
+                    android:background="@drawable/border_all_radius"
+                    android:includeFontPadding="false"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/doctor_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</ScrollView>

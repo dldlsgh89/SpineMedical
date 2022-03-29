@@ -57,13 +57,13 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
         Log.d("spinemedical", "JoinFragment start");
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_join, container, false);
 
-        Spinner spinner = viewGroup.findViewById(R.id.spinner_hospital);
+        //Spinner spinner = viewGroup.findViewById(R.id.spinner_hospital);
         Context context = getContext();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items);
+
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);  //스피너에 어댑터 설정하기
         TextView hospitalName = viewGroup.findViewById(R.id.hospital_name);
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //스피너 리스너 설정
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -102,7 +102,7 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
             public void onNothingSelected(AdapterView<?> parent) {
                 doctorName.setText("");
             }
-        });
+        });*/
 
         CalendarView birthday = viewGroup.findViewById(R.id.birthday);
         Date date = new Date(birthday.getDate());
@@ -127,8 +127,8 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
                 EditText loginPw = viewGroup.findViewById(R.id.login_pw);
                 EditText pwCheck = viewGroup.findViewById(R.id.pw_check);
                 EditText patientName = viewGroup.findViewById(R.id.patient_name);
-                EditText hospitalName = viewGroup.findViewById(R.id.hospital_name);
-                EditText doctorName = viewGroup.findViewById(R.id.doctor_name);
+                /*EditText hospitalName = viewGroup.findViewById(R.id.hospital_name);
+                EditText doctorName = viewGroup.findViewById(R.id.doctor_name);*/
 
                 RadioGroup genderRadioBtn = viewGroup.findViewById(R.id.radio_btn_gender);
                 int genderNum = genderRadioBtn.getCheckedRadioButtonId();
@@ -149,15 +149,14 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
 
                 EditText email = viewGroup.findViewById(R.id.email);
 
-
                 boolean formCheck = true;
                 String strDeviceNum = String.valueOf(deviceNum.getText()); //기기번호
                 String strLoginId = String.valueOf(loginId.getText()); //로그인 아이디
                 String strLoginPw= String.valueOf(loginPw.getText()); //패스워드
                 String strPwCheck= String.valueOf(pwCheck.getText()); //패스워드 확인
                 String strPatientName= String.valueOf(patientName.getText()); //환자이름
-                String strHospitalName= String.valueOf(hospitalName.getText()); //병원이름
-                String strDoctorName= String.valueOf(doctorName.getText()); //담당의이름
+                /*String strHospitalName= String.valueOf(hospitalName.getText()); //병원이름
+                String strDoctorName= String.valueOf(doctorName.getText()); //담당의이름*/
                 //strBirthday; 생년월일
                 String strEmail= String.valueOf(email.getText()); //이메일
                 String gender = radioButton.getText().toString(); //성별
@@ -178,12 +177,12 @@ public class JoinFragment extends Fragment implements MainActivity.onKeyBackPres
                 if(strPatientName == null || strPatientName.equals("")){
                     formCheck = false;
                 }
-                if(strHospitalName == null || strHospitalName.equals("")){
+                /*if(strHospitalName == null || strHospitalName.equals("")){
                     formCheck = false;
                 }
                 if(strDoctorName == null || strDoctorName.equals("")){
                     formCheck = false;
-                }
+                }*/
                 if(strEmail == null || strEmail.equals("")){
                     formCheck = false;
                 }

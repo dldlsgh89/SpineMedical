@@ -60,7 +60,7 @@ public class MessageActivity extends BaseActivity {
 
     
         //새로운 메시지 버튼 클릭
-        AppCompatImageButton newMessageBtn = findViewById(R.id.new_message_btn);
+        /*AppCompatImageButton newMessageBtn = findViewById(R.id.new_message_btn);
         newMessageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +69,7 @@ public class MessageActivity extends BaseActivity {
                 startActivity(intent);
                 activity.finish();
             }
-        });
+        });*/
 
         inflateHeader("메시지 목록");
     }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/data_row"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/idex"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/doctor_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginRight="-1dp"
+        android:gravity="center"
+        android:padding="3dp"
+        android:background="@drawable/border_all"
+        />
+
+    <TextView
+        android:id="@+id/hospital_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginRight="-1dp"
+        android:gravity="center"
+        android:padding="3dp"
+        android:background="@drawable/border_none_left"
+        />
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginRight="-1dp"
+        android:gravity="center"
+        android:padding="3dp"
+        android:background="@drawable/border_none_left"
+        />
+
+    <TextView
+        android:id="@+id/choise_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginRight="-1dp"
+        android:gravity="center"
+        android:padding="3dp"
+        android:textColor="#2ECE71"
+        android:background="@drawable/border_none_left"
+        />
+
+</LinearLayout>

@@ -27,13 +27,15 @@ public class MoreMainFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_more, container, false);
 
-        Button change_patient = viewGroup.findViewById(R.id.change_patient);
-        Button change_pass = viewGroup.findViewById(R.id.change_pass);
-        Button change_device = viewGroup.findViewById(R.id.change_device);
+        Button changePatient = viewGroup.findViewById(R.id.change_patient);
+        Button changePass = viewGroup.findViewById(R.id.change_pass);
+        Button changeDevice = viewGroup.findViewById(R.id.change_device);
+        Button doctorConnect = viewGroup.findViewById(R.id.doctor_connect);
+        Button patientWithdrawal = viewGroup.findViewById(R.id.patient_withdrawal);
         Button logout = viewGroup.findViewById(R.id.logout);
 
         //환자정보변경버튼
-        change_patient.setOnClickListener(new View.OnClickListener() {
+        changePatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MoreActivity)getActivity()).patientFragment(PatientFragment.newInstance(), "");
@@ -41,17 +43,31 @@ public class MoreMainFragment extends Fragment{
         });
 
         //비밀번호변경버튼
-        change_pass.setOnClickListener(new View.OnClickListener() {
+        changePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MoreActivity)getActivity()).passFragment(PassFragment.newInstance(), "");
             }
         });
         //연동기기변경버튼
-        change_device.setOnClickListener(new View.OnClickListener() {
+        changeDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MoreActivity)getActivity()).deviceFragment(DeviceFragment.newInstance(), "");
+            }
+        });
+        //담당의선택
+        doctorConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MoreActivity)getActivity()).doctorConnectFragment(DoctorConnectFragment.newInstance(), "");
+            }
+        });
+        //회원탈퇴
+        patientWithdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MoreActivity)getActivity()).withdrawalFragment(WithdrawalFragment.newInstance(), "");
             }
         });
         //로그아웃버튼

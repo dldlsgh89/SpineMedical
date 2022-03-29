@@ -71,6 +71,22 @@ public class MoreActivity extends BaseActivity {
         fragmentTransaction.replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
     }
 
+    //프레그먼트 내부에서 다른 프레그먼트로 전환
+    public void doctorConnectFragment(DoctorConnectFragment fragment, String text) {
+        Log.d("spinemedical", "doctorConnectFragment start");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
+    }
+
+    //프레그먼트 내부에서 다른 프레그먼트로 전환
+    public void withdrawalFragment(WithdrawalFragment fragment, String text) {
+        Log.d("spinemedical", "WithdrawalFragment start");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
+    }
+
     public void MainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

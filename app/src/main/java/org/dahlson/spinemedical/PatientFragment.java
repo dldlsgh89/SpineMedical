@@ -75,8 +75,8 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
         RadioGroup genderRadioGroup = viewGroup.findViewById(R.id.gender);
         TextView birthText = viewGroup.findViewById(R.id.birth_text);
         EditText patientNameText = viewGroup.findViewById(R.id.patient_name);
-        EditText hospitalNameText = viewGroup.findViewById(R.id.hospital_name);
-        EditText doctorNameText = viewGroup.findViewById(R.id.doctor_name);
+        /*EditText hospitalNameText = viewGroup.findViewById(R.id.hospital_name);
+        EditText doctorNameText = viewGroup.findViewById(R.id.doctor_name);*/
         EditText emailText = viewGroup.findViewById(R.id.email);
         Spinner spinnerGroup = viewGroup.findViewById(R.id.spinner_group);
         Spinner spinnerType = viewGroup.findViewById(R.id.spinner_type);
@@ -111,7 +111,7 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
 
         //spinner setting
         //병원명 선택
-        Spinner spinnerHospital = viewGroup.findViewById(R.id.spinner_hospital);
+        /*Spinner spinnerHospital = viewGroup.findViewById(R.id.spinner_hospital);
         adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, hospital_items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHospital.setAdapter(adapter);  //스피너에 어댑터 설정하기
@@ -131,10 +131,10 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
             public void onNothingSelected(AdapterView<?> parent) {
                 hospitalNameText.setText("");
             }
-        });
+        });*/
 
         //담당의명
-        Spinner spinnerDoctor = viewGroup.findViewById(R.id.spinner_doctor);
+        /*Spinner spinnerDoctor = viewGroup.findViewById(R.id.spinner_doctor);
         adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, doctor_items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDoctor.setAdapter(adapter);  //스피너에 어댑터 설정하기
@@ -154,7 +154,7 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
             public void onNothingSelected(AdapterView<?> parent) {
                 doctorNameText.setText("");
             }
-        });
+        });*/
 
         //분류
         adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, group_items);
@@ -181,8 +181,8 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
                 String strGender = String.valueOf(radioButton.getText());
                 String strBirth = String.valueOf(birthText.getText());
                 String strPatientName = String.valueOf(patientNameText.getText());
-                String strHospitalName = String.valueOf(hospitalNameText.getText());
-                String strDoctorName = String.valueOf(doctorNameText.getText());
+                /*String strHospitalName = String.valueOf(hospitalNameText.getText());
+                String strDoctorName = String.valueOf(doctorNameText.getText());*/
                 String strEmail = String.valueOf(emailText.getText());
                 String strGroup = spinnerGroup.getSelectedItem().toString();
                 String strType = spinnerType.getSelectedItem().toString();
@@ -202,12 +202,12 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
                 if(strPatientName == null || strPatientName.equals("")){
                     formCheck = false;
                 }
-                if(strHospitalName == null || strHospitalName.equals("")){
+               /* if(strHospitalName == null || strHospitalName.equals("")){
                     formCheck = false;
                 }
                 if(strDoctorName == null || strDoctorName.equals("")){
                     formCheck = false;
-                }
+                }*/
                 if(strEmail == null || strEmail.equals("")){
                     formCheck = false;
                 }
@@ -237,8 +237,8 @@ public class PatientFragment extends Fragment implements MoreActivity.onKeyBackP
                 Log.d("spinemedical","strGender : " + strGender);
                 Log.d("spinemedical","strBirth : " + strBirth);
                 Log.d("spinemedical","strPatientName : " + strPatientName);
-                Log.d("spinemedical","strHospitalName : " + strHospitalName);
-                Log.d("spinemedical","strDoctorName : " + strDoctorName);
+                /*Log.d("spinemedical","strHospitalName : " + strHospitalName);
+                Log.d("spinemedical","strDoctorName : " + strDoctorName);*/
                 Log.d("spinemedical","strEmail : " + strEmail);
                 Log.d("spinemedical","strGroup : " + strGroup);
                 Log.d("spinemedical","strType : " + strType);
