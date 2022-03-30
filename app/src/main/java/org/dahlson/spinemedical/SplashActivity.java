@@ -20,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         //1초 뒤에 MainActivity 를 띄워주도록 하는 메서드
         handler.postDelayed(new Runnable() {
             @Override

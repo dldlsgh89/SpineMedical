@@ -33,6 +33,7 @@
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_message_view.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_more.xml" value="0.4608788853161844" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_new_message.xml" value="0.2296875" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_paring.xml" value="0.20606884057971014" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/activity_spine_home.xml" value="0.25" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/custom_dialog.xml" value="0.22" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/custom_dialog2.xml" value="0.37864583333333335" />
@@ -49,6 +50,8 @@
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_join.xml" value="0.2981878088962109" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_more.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_pairing_bluetooth.xml" value="0.25" />
+        <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_pairing_bluetooth_.xml" value="0.10739614994934144" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_pass.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_patient.xml" value="0.25" />
         <entry key="..\:/Users/dahlson-09/Desktop/android_workspace2/spine_correction/app/src/main/res/layout/fragment_withdrawal.xml" value="0.23020833333333332" />

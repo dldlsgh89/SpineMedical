@@ -60,7 +60,12 @@ public class LoginFragment extends Fragment {
                     //action
                     Log.d("spinemedical", "strLoginId : " + strLoginId);
                     Log.d("spinemedical", "strLoginPw : " + strLoginPw);
-                    ((MainActivity)getActivity()).SpineHomeActivity();
+                    //((MainActivity)getActivity()).SpineHomeActivity();
+
+                    //블루투스 테스트
+                    ((MainActivity)getActivity()).PairingActivity();
+                    //((MainActivity)getActivity()).pairingFragment(PairingFragment.newInstance());
+                    
                     //실제로는 유효성 검사 및 로그인 처리
                 }else {
                     dialog.show();

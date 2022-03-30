@@ -3,10 +3,13 @@ package org.dahlson.spinemedical;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.app.Fragment;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         /*ActionBar actionBar = getSupportActionBar();
         actionBar.hide();*/
-
 
         /**ㅇ
          * 헤더 inflation 호출
@@ -80,9 +82,23 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.LoginFragment, loginFragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
 
+    //로그인 화면 프레그먼트로 전환
+    public void pairingFragment(PairingFragment pairingFragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.LoginFragment, pairingFragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
+    }
+
 
     public void SpineHomeActivity(){
         Intent intent = new Intent(this, SpineHomeActivity.class);
+        startActivity(intent);
+        //MainActivity를 종료(메모리에서 제거)
+        finish();
+    }
+
+    public void PairingActivity(){
+        Intent intent = new Intent(this, PairingActivity.class);
         startActivity(intent);
         //MainActivity를 종료(메모리에서 제거)
         finish();
