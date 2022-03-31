@@ -4,11 +4,14 @@ import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,11 +26,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 public class PairingActivity extends AppCompatActivity {
 
@@ -145,6 +151,7 @@ public class PairingActivity extends AppCompatActivity {
     CheckBox chkFindme;
     ListView listPaired;
     ListView listDevice;
+    TextView bluetoothText;
 
     //Adapter
     SimpleAdapter adapterPaired;
@@ -153,6 +160,17 @@ public class PairingActivity extends AppCompatActivity {
     //list - Device 목록 저장
     List<Map<String,String>> dataPaired;
     List<Map<String,String>> dataDevice;
+
+
+    BluetoothDevice bluetoothDevice; // 블루투스 디바이스
+    BluetoothSocket bluetoothSocket; // 블루투스 소켓
+    OutputStream outputStream; // 블루투스에 데이터를 출력하기 위한 출력 스트림
+    InputStream inputStream; // 블루투스에 데이터를 입력하기 위한 입력 스트림
+    // 데이터를 수신하기 위한 버퍼를 생성
+    int readBufferPosition;
+    byte[] readBuffer;
+    // 데이터를 수신하기 위한 쓰레드 생성
+    Thread workerThread;
 
 
     @Override
@@ -166,6 +184,8 @@ public class PairingActivity extends AppCompatActivity {
         btnSearch = (Button)findViewById(R.id.btnSearch);
         listPaired = (ListView)findViewById(R.id.listPaired);
         listDevice = (ListView)findViewById(R.id.listDevice);
+
+        bluetoothText = (TextView)findViewById(R.id.bluetooth_Text);
 
         //Adapter1
         dataPaired = new ArrayList<>();
@@ -215,6 +235,7 @@ public class PairingActivity extends AppCompatActivity {
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, BLUETOOTH_REQUEST_CODE);
         }else{
+            //블루투스 켜져있으면 바로 페어링된 목록 가져옴
             GetListPairedDevice();
         }
 
@@ -343,8 +364,10 @@ public class PairingActivity extends AppCompatActivity {
         }
     }
 
+    //블루투스 사용 버튼을 누르거나 이미 블루투스가 활성화 되어있을때
     //이미 페어링된 목록 가져오기
     public void GetListPairedDevice(){
+        //페어링된 블루투스 기기 찾기
         Set<BluetoothDevice> pairedDevice = mBluetoothAdapter.getBondedDevices();
 
         dataPaired.clear();
@@ -359,9 +382,109 @@ public class PairingActivity extends AppCompatActivity {
         }
         //리스트 목록갱신
         adapterPaired.notifyDataSetChanged();
+        listPaired.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String, String> test = (Map)parent.getAdapter().getItem(position);
+                Log.d("spinemedical", "test : " + test.get("name"));
+                connectDevice(test.get("name"));
+            }
+        });
+    }
+    
+    //디바이스 연결 함수
+    public void connectDevice(String deviceName) {
+        Log.d("spinemedical", "connectDevice start");
+        Set<BluetoothDevice> pairedDevice = mBluetoothAdapter.getBondedDevices();
+        // 페어링 된 디바이스들을 모두 탐색
+        for(BluetoothDevice tempDevice : pairedDevice) {
+            // 사용자가 선택한 이름과 같은 디바이스로 설정하고 반복문 종료
+            if(deviceName.equals(tempDevice.getName())) {
+                bluetoothDevice = tempDevice;
+                break;
+            }
+        }
+        // UUID 생성
+        UUID uuid = java.util.UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+        // Rfcomm 채널을 통해 블루투스 디바이스와 통신하는 소켓 생성
+        try {
+            bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(uuid);
+            bluetoothSocket.connect();
+            // 데이터 송,수신 스트림을 얻어옵니다.
+            outputStream = bluetoothSocket.getOutputStream();
+            inputStream = bluetoothSocket.getInputStream();
+            Log.d("spinemedical", "uuid : " + uuid);
+            // 데이터 수신 함수 호출
+            receiveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //블루투스 연결하고 데이터 수신 함수
+    public void receiveData() {
+        Log.d("spinemedical", "receiveData start");
+        final Handler handler = new Handler();
+        // 데이터를 수신하기 위한 버퍼를 생성
+        readBufferPosition = 0;
+        readBuffer = new byte[1024];
+
+        // 데이터를 수신하기 위한 쓰레드 생성
+        workerThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(Thread.currentThread().isInterrupted()) {
+                    try {
+                        // 데이터를 수신했는지 확인합니다.
+                        int byteAvailable = inputStream.available();
+                        Log.d("spinemedical", "byteAvailable : " + byteAvailable);
+                        // 데이터가 수신 된 경우
+                        if(byteAvailable > 0) {
+                            // 입력 스트림에서 바이트 단위로 읽어 옵니다.
+                            byte[] bytes = new byte[byteAvailable];
+                            inputStream.read(bytes);
+                            // 입력 스트림 바이트를 한 바이트씩 읽어 옵니다.
+                            for(int i = 0; i < byteAvailable; i++) {
+                                byte tempByte = bytes[i];
+                                // 개행문자를 기준으로 받음(한줄)
+                                if(tempByte == '\n') {
+                                    // readBuffer 배열을 encodedBytes로 복사
+                                    byte[] encodedBytes = new byte[readBufferPosition];
+                                    System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
+                                    // 인코딩 된 바이트 배열을 문자열로 변환
+                                    final String text = new String(encodedBytes, "US-ASCII");
+                                    readBufferPosition = 0;
+                                    handler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            // 텍스트 뷰에 출력
+                                            bluetoothText.append(text + "\n");
+                                        }
+                                    });
+                                } // 개행 문자가 아닐 경우
+                                else {
+                                    readBuffer[readBufferPosition++] = tempByte;
+                                }
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        // 1초마다 받아옴
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        workerThread.start();
     }
 
 
+    //블루투스 활성화 액티비티
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -369,6 +492,7 @@ public class PairingActivity extends AppCompatActivity {
             case BLUETOOTH_REQUEST_CODE:
                 //블루투스 활성화 승인
                 if (resultCode == Activity.RESULT_OK) {
+                    //현재 페이링 된 디바이스 목록 나옴
                     GetListPairedDevice();
                 }
                 //블루투스 활성화 거절
